@@ -1,0 +1,129 @@
+.header {
+  margin-top: 16px;
+  background: #ffffff;
+  border-radius: 12px;
+  &__content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 0;
+    &__logo {
+      margin-left: 24px;
+      display: flex;
+      align-items: center;
+      &__button {
+        cursor: pointer;
+        background: #f5f5f7;
+        border-radius: 6px;
+        margin-left: 12px;
+        width: 36px;
+        border: none;
+        height: 36px;
+      }
+    }
+    &__menu {
+      display: flex;
+      align-items: center;
+      &__country {
+        font-style: normal;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 24px;
+        color: #1d1d1f;
+        margin-left: 8px;
+      }
+      &__value {
+        margin-left: 12px;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 24px;
+        color: #1d1d1f;
+      }
+    }
+    &__navigation {
+      &__list {
+        display: flex;
+        align-items: center;
+        &__item {
+          padding: 0 24px;
+          a {
+            text-decoration: none;
+            font-style: normal;
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 24px;
+            color: #1d1d1f;
+          }
+        }
+      }
+    }
+    &__phone {
+      display: flex;
+      align-items: center;
+      &__number {
+        font-style: normal;
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 24px;
+        color: #1d1d1f;
+        margin-left: 12px;
+      }
+    }
+    &__buttons {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      &__list {
+        display: flex;
+        &__notice {
+          margin-right: 12px;
+          cursor: pointer;
+          border: 1px solid #d2d2d7;
+          border-radius: 12px;
+          width: 56px;
+          height: 56px;
+          background: none;
+        }
+        &__favourite {
+          margin-right: 12px;
+          cursor: pointer;
+          border: 1px solid #d2d2d7;
+          border-radius: 12px;
+          width: 56px;
+          height: 56px;
+          background: none;
+        }
+        &__user {
+          margin-right: 12px;
+          cursor: pointer;
+          border: 1px solid #d2d2d7;
+          border-radius: 12px;
+          width: 56px;
+          height: 56px;
+          background: none;
+        }
+        &__basket {
+          margin-right: 15px;
+          width: 147px;
+          height: 56px;
+          cursor: pointer;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background: none;
+          border: 1px solid #d2d2d7;
+          border-radius: 12px;
+          p {
+            margin-right: 8px;
+            font-style: normal;
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 24px;
+            color: #686870;
+          }
+        }
+      }
+    }
+  }
+}
