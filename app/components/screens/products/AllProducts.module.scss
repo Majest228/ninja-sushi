@@ -1,0 +1,19 @@
+.all {
+  &__show {
+    cursor: pointer;
+    border: none;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    text-align: center;
+    color: #00cc2d;
+    width: 265px;
+    height: 56px;
+
+    display: block;
+    margin: 48px auto 0 auto;
+    background: #ffffff;
+    border-radius: 12px;
+  }
+}

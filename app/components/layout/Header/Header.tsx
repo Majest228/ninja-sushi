@@ -16,7 +16,9 @@ const Header = () => {
       <div className={styles.header__content}>
         {/*logo*/}
         <div className={styles.header__content__logo}>
-          <Image src={logo} alt='logo' />
+          <Link href='/'>
+            <Image src={logo} alt='logo' />
+          </Link>
           <button className={styles.header__content__logo__button}>
             <ArrowIco />
           </button>

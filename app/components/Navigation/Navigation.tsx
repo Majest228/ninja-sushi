@@ -9,12 +9,12 @@ import DrinksIco from "@/app/components/ui/Drinks"
 import SousIco from "@/app/components/ui/Sous"
 import UnkownIco from "@/app/components/ui/Unkown"
 
-const Navigation = () => {
+const Navigation = ({ status }: any) => {
   return (
     <nav className={styles.navigation}>
       <ul className={styles.navigation__content}>
         <li className={styles.navigation__content__item}>
-          <Link href='/'>
+          <Link href='/products/1'>
             <div className={styles.navigation__content__item__link}>
               <div className={styles.navigation__content__item__link__img}>
                 <RollsIco />
@@ -24,7 +24,7 @@ const Navigation = () => {
           </Link>
         </li>
         <li className={styles.navigation__content__item}>
-          <Link href='/'>
+          <Link href='/products/1'>
             <div className={styles.navigation__content__item__link}>
               <div className={styles.navigation__content__item__link__img}>
                 <SushiIco />
@@ -35,7 +35,7 @@ const Navigation = () => {
           </Link>
         </li>
         <li className={styles.navigation__content__item}>
-          <Link href='/'>
+          <Link href='/products/1'>
             <div className={styles.navigation__content__item__link}>
               <div className={styles.navigation__content__item__link__img}>
                 <SettsIco />
@@ -45,7 +45,7 @@ const Navigation = () => {
           </Link>
         </li>
         <li className={styles.navigation__content__item}>
-          <Link href='/'>
+          <Link href='/products/1'>
             <div className={styles.navigation__content__item__link}>
               <div className={styles.navigation__content__item__link__img}>
                 <BoulsIco />
@@ -55,7 +55,7 @@ const Navigation = () => {
           </Link>
         </li>
         <li className={styles.navigation__content__item}>
-          <Link href='/'>
+          <Link href='/products/1'>
             <div className={styles.navigation__content__item__link}>
               <div className={styles.navigation__content__item__link__img}>
                 <DrinksIco />
@@ -65,7 +65,7 @@ const Navigation = () => {
           </Link>
         </li>
         <li className={styles.navigation__content__item}>
-          <Link href='/'>
+          <Link href='/products/1'>
             <div className={styles.navigation__content__item__link}>
               <div className={styles.navigation__content__item__link__img}>
                 <SousIco />
@@ -75,7 +75,7 @@ const Navigation = () => {
           </Link>
         </li>
         <li className={styles.navigation__content__item}>
-          <Link href='/'>
+          <Link href='/products/1'>
             <div className={styles.navigation__content__item__link}>
               <div className={styles.navigation__content__item__link__img}>
                 <UnkownIco />
@@ -85,7 +85,7 @@ const Navigation = () => {
           </Link>
         </li>
         <li className={styles.navigation__content__item}>
-          <Link href='/'>
+          <Link href='/products/1'>
             <div className={styles.navigation__content__item__link}>
               <div className={styles.navigation__content__item__link__img}>
                 <UnkownIco />
