@@ -2,30 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fcd414b2-a93f-42cf-bd89-7962e0b961c7" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/app/components/screens/home/products/Products.module.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/components/screens/home/products/Products.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/components/screens/home/products/product/Product.module.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/components/screens/home/products/product/Product.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/components/screens/news/NewsPage.module.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/components/screens/news/NewsPage.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/components/screens/products/AllProducts.module.scss" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/components/screens/products/AllProducts.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/components/ui/ArrowGren.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/components/ui/Circle.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/components/ui/Plus.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/news/index.tsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pages/products/[idx].tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/discord.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/discord.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/components/Navigation/Navigation.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/Navigation/Navigation.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/components/layout/Footer/Footer.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/layout/Footer/Footer.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/components/layout/Footer/Footer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/layout/Footer/Footer.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/components/layout/Header/Header.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/layout/Header/Header.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/components/layout/Layout.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/layout/Layout.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/components/layout/Layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/layout/Layout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/components/screens/home/HomePage.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/screens/home/HomePage.module.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/components/screens/home/HomePage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/screens/home/HomePage.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/_document.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/pages/_document.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/assets/search.png" beforeDir="false" afterPath="$PROJECT_DIR$/app/assets/search.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/screens/news/NewsPage.module.scss" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/screens/news/NewsPage.module.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/components/screens/news/NewsPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/app/components/screens/news/NewsPage.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,6 +50,7 @@
       <workItem from="1678516795286" duration="9030000" />
       <workItem from="1678538107843" duration="11747000" />
       <workItem from="1678790241976" duration="9578000" />
+      <workItem from="1678866520897" duration="7527000" />
     </task>
     <servers />
   </component>
