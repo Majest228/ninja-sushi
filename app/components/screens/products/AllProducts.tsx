@@ -8,8 +8,10 @@ const AllProducts = () => {
   return (
     <div className={styles.all}>
       <Navigation />
-      <Products type={"single"} title={"Суши"} />
-      <button className={styles.all__show}>Показать больше</button>
+      <div className={styles.all__container}>
+        <Products type={"single"} title={"Суши"} />
+        <button className={styles.all__show}>Показать больше</button>
+      </div>
     </div>
   )
 }
