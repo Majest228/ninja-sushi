@@ -2,7 +2,72 @@ import React from "react"
 import styles from "./NewsPage.module.scss"
 import search from "../../../assets/search.png"
 import Image from "next/image"
+import new1 from "../../../assets/news1.jpg"
+import Link from "next/link"
+
 const NewsPage = () => {
+  const news = [
+    {
+      id: 0,
+      type: "Музыка",
+      title: "6 нових музикальних альбомів для твого плей-листу",
+      url: new1,
+    },
+    {
+      id: 1,
+      type: "Музыка",
+      title: "Ninja вернули лосось",
+      url: new1,
+    },
+    {
+      id: 2,
+      type: "Обновления в меню",
+      title: "Привет! Мы уже на правом!",
+      url: new1,
+    },
+    {
+      id: 3,
+      type: "Обновления в меню",
+      title: "Привет! Мы уже на правом!",
+      url: new1,
+    },
+    {
+      id: 4,
+      type: "Обновления в меню",
+      title: "Привет! Мы уже на правом!",
+      url: new1,
+    },
+    {
+      id: 5,
+      type: "Обновления в меню",
+      title: "Привет! Мы уже на правом!",
+      url: new1,
+    },
+    {
+      id: 6,
+      type: "Обновления в меню",
+      title: "Привет! Мы уже на правом!",
+      url: new1,
+    },
+    {
+      id: 7,
+      type: "Обновления в меню",
+      title: "Привет! Мы уже на правом!",
+      url: new1,
+    },
+    {
+      id: 8,
+      type: "Обновления в меню",
+      title: "Привет! Мы уже на правом!",
+      url: new1,
+    },
+    {
+      id: 9,
+      type: "Обновления в меню",
+      title: "Привет! Мы уже на правом!",
+      url: new1,
+    },
+  ]
   return (
     <div className={styles.news}>
       <div className={styles.news__container}>
@@ -24,8 +89,7 @@ const NewsPage = () => {
             />
           </div>
         </div>
-<<<<<<< Updated upstream
-=======
+
 
         <div className={styles.news__content}>
           {news.map((item) => (
@@ -57,7 +121,7 @@ const NewsPage = () => {
           ))}
         </div>
         <button className={styles.news__show}>Показать больше</button>
->>>>>>> Stashed changes
+
       </div>
     </div>
   )

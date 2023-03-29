@@ -1,0 +1,43 @@
+.profile {
+    &__container {
+        max-width: 1576px;
+        margin: 0 auto;
+    }
+
+    &__content {
+        margin-top: 32px;
+        display: flex;
+
+        &__left {
+            &__list {
+                display: flex;
+                flex-direction: column;
+
+                &__button {
+                    background: none;
+                    border: none;
+                    display: flex;
+                    align-items: center;
+                    max-width: 224px;
+                    width: 100%;
+                    margin-bottom: 32px;
+
+                    &__img {
+                        background: #FFFFFF;
+                        border-radius: 12px;
+                        padding: 14px 12px;
+                    }
+
+                    &__text {
+                        font-style: normal;
+                        font-weight: 600;
+                        font-size: 16px;
+                        line-height: 24px;
+                        color: #1D1D1F;
+                        margin-left: 12px;
+                    }
+                }
+            }
+        }
+    }
+}
