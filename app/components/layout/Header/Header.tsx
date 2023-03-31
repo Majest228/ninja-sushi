@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import styles from "./Header.module.scss"
 import Image from "next/image"
 import logo from "../../../assets/logo.png"
@@ -10,8 +10,10 @@ import NoticeIco from "@/app/components/ui/Notice"
 import FavouriteIco from "@/app/components/ui/Favourite"
 import UserIco from "@/app/components/ui/User"
 import BasketIco from "@/app/components/ui/Basket"
+import Cart from "../../ui/components/Cart/Cart"
 
 const Header = () => {
+  const [isShow, setIsShow] = useState(false)
   return (
     <header className={styles.header}>
       <div className={styles.header__container}>
@@ -69,11 +71,15 @@ const Header = () => {
               <button className={styles.header__content__buttons__list__user}>
                 <UserIco />
               </button>
-              <button className={styles.header__content__buttons__list__basket}>
+              <button
+                onClick={() => setIsShow(true)}
+                className={styles.header__content__buttons__list__basket}
+              >
                 <p>Корзина</p>
                 <BasketIco />
               </button>
             </ul>
+            {isShow ? <Cart /> : ""}
           </div>
         </div>
       </div>
