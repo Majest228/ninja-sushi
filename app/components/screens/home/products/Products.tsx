@@ -7,6 +7,7 @@ import bottle from "@/app/assets/bottle.png"
 import green from "@/app/assets/green.png"
 import fish from "@/app/assets/fish.png"
 import Image from "next/image"
+import Link from "next/link"
 
 export type typeProducts = "homepage" | "single"
 
@@ -67,7 +68,7 @@ const Products = ({ title, type }: IProducts) => {
     },
   ]
   return (
-    <div className={styles.products}>
+    <Link href={`/products/product/${1}`} className={styles.products}>
       {type == "homepage" ? (
         <div className={styles.products__header}>
           <h3 className={styles.products__header__title}>{title}</h3>
@@ -113,7 +114,7 @@ const Products = ({ title, type }: IProducts) => {
         <Product />
         <Product />
       </div>
-    </div>
+    </Link>
   )
 }
 

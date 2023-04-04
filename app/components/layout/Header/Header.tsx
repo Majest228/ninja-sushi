@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useRef } from "react"
 import styles from "./Header.module.scss"
 import Image from "next/image"
 import logo from "../../../assets/logo.png"
@@ -12,8 +12,7 @@ import UserIco from "@/app/components/ui/User"
 import BasketIco from "@/app/components/ui/Basket"
 import Cart from "../../ui/components/Cart/Cart"
 
-const Header = () => {
-  const [isShow, setIsShow] = useState(false)
+const Header = ({ setIsShow, isShow, outside }: any) => {
   return (
     <header className={styles.header}>
       <div className={styles.header__container}>
@@ -79,7 +78,13 @@ const Header = () => {
                 <BasketIco />
               </button>
             </ul>
-            {isShow ? <Cart /> : ""}
+            {isShow ? (
+              <>
+                <Cart outside={outside} setIsShow={setIsShow} />
+              </>
+            ) : (
+              ""
+            )}
           </div>
         </div>
       </div>

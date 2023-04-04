@@ -1,46 +1,16 @@
-import styles from './Profile.module.scss'
-import histore from '../../../assets/histore.png'
-import favorite from '../../../assets/favorite.png'
-import gps from '../../../assets/gps.png'
-import sun from '../../../assets/sun.png'
-import Image from 'next/image'
+import styles from "./Profile.module.scss"
+import histore from "../../../assets/histore.png"
+import favorite from "../../../assets/favorite.png"
+import gps from "../../../assets/gps.png"
+import sun from "../../../assets/sun.png"
+import Image from "next/image"
+import user from "../../../assets/user.png"
+import pencil from "../../../assets/pencil.png"
+import plus from "../../../assets/plus.png"
+import map from "../../../assets/map.png"
+import basket from "../../../assets/basket.png"
 
 const Profile = () => {
-<<<<<<< Updated upstream
-    return (
-        <div className={styles.profile}>
-            <div className={styles.profile__container}>
-                <div className={styles.profile__content}>
-                    <div className={styles.profile__content__left}>
-                        <ul className={styles.profile__content__left__list}>
-                            <button className={styles.profile__content__left__list__button}>
-                                <div className={styles.profile__content__left__list__button__img}>
-                                    <Image src={histore} alt={`${histore}`} />
-                                </div>
-                                <p className={styles.profile__content__left__list__button__text}>История заказов</p>
-                            </button>
-                            <button className={styles.profile__content__left__list__button}>
-                                <div className={styles.profile__content__left__list__button__img}>
-                                    <Image src={favorite} alt={`${favorite}`} />
-                                </div>
-                                <p className={styles.profile__content__left__list__button__text}>Избранные товары</p>
-                            </button>
-                            <button className={styles.profile__content__left__list__button}>
-                                <div className={styles.profile__content__left__list__button__img}>
-                                    <Image src={gps} alt={`${gps}`} />
-                                </div>
-                                <p className={styles.profile__content__left__list__button__text}>Адрес доставки</p>
-                            </button>
-                            <button className={styles.profile__content__left__list__button}>
-                                <div className={styles.profile__content__left__list__button__img}>
-                                    <Image src={sun} alt={`${sun}`} />
-                                </div>
-                                <p className={styles.profile__content__left__list__button__text}>Тема сайта</p>
-                            </button>
-                        </ul>
-                    </div>
-                    <div className={styles.profile__content__right}>
-=======
   return (
     <div className={styles.profile}>
       <div className={styles.profile__container}>
@@ -97,7 +67,11 @@ const Profile = () => {
               </button>
             </ul>
             <div className={styles.profile__content__left__user}>
-              <Image src={user} alt='User' />
+              <Image
+                className={styles.profile__content__left__user__img}
+                src={user}
+                alt='User'
+              />
               <div className={styles.profile__content__left__user__info}>
                 <div
                   className={styles.profile__content__left__user__info__text}
@@ -140,13 +114,11 @@ const Profile = () => {
                 <Image src={plus} alt='plus' />
               </button>
             </div>
->>>>>>> Stashed changes
 
                     </div>
                 </div>
             </div>
-<<<<<<< Updated upstream
-=======
+
           </div> */}
           <div className={styles.profile__content__right}>
             <div className={styles.profile__content__right__text}>
@@ -204,9 +176,10 @@ const Profile = () => {
               </button>
             </div>
           </div>
->>>>>>> Stashed changes
         </div>
-    )
+      </div>
+    </div>
+  )
 }
 
 export default Profile

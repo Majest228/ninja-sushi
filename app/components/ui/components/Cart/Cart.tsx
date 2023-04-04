@@ -2,14 +2,14 @@ import Image from "next/image"
 import styles from "./Cart.module.scss"
 import close from "../../../../assets/close.png"
 import shop from "../../../../assets/shop.png"
-const Cart = () => {
+const Cart = ({ setIsShow, outside }: any) => {
   return (
-    <div className={styles.cart}>
+    <div className={styles.cart} ref={outside}>
       <div className={styles.cart__container}>
         <div className={styles.cart__content}>
           <div className={styles.cart__content__title}>
             <h3>Ваш заказ</h3>
-            <button>
+            <button onClick={() => setIsShow(false)}>
               <Image src={close} alt='close' />
             </button>
           </div>
