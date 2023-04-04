@@ -7,14 +7,74 @@
     display: flex;
     align-items: center;
     &__left {
-      margin-right: 20px;
+      margin-right: 100px;
       img {
-        margin-top: 32px;
       }
     }
     &__right {
-      &__footer {
+      margin-top: 121px;
+      &__switch {
+        margin-top: 18px;
+        margin-bottom: 32px;
         display: flex;
+        align-items: center;
+        p {
+          margin-top: 10px;
+          margin-left: 12px;
+          font-style: normal;
+          font-weight: 500;
+          font-size: 20px;
+          line-height: 28px;
+          color: #1d1d1f;
+        }
+      }
+      &__footer {
+        max-width: 424px;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        h3 {
+          font-style: normal;
+          font-weight: 700;
+          font-size: 48px;
+          line-height: 58px;
+          color: #1d1d1f;
+          span {
+            font-style: normal;
+            font-weight: 700;
+            font-size: 32px;
+            line-height: 39px;
+            color: #686870;
+          }
+        }
+        &__basket {
+          display: flex;
+          align-items: center;
+          background: #00cc2d;
+          border: none;
+          border-radius: 12px;
+          padding: 16px 24px;
+          p {
+            font-style: normal;
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 24px;
+            color: #ffffff;
+            margin-right: 5px;
+          }
+        }
+        &__favorite {
+          background: #ffffff;
+          border-radius: 12px;
+          border: none;
+          padding: 19px 17px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          svg {
+            padding: 0;
+          }
+        }
       }
       &__tags {
         display: flex;
@@ -64,7 +124,7 @@
             background: #ffffff;
             border-radius: 8px;
             border: none;
-            padding: 43px 18px;
+            padding: 0 18px;
           }
           &__item {
             padding: 12px;

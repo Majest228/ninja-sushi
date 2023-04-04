@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import styles from "./Product.module.scss"
 import Navigation from "@/app/components/Navigation/Navigation"
 import Image from "next/image"
@@ -6,8 +6,13 @@ import item from "../../../assets/item.png"
 import fish from "@/app/assets/fish.png"
 import arrow from "../../../assets/arrow-gray.png"
 import cart from "../../../assets/cart.png"
+import Switch from "@/app/components/ui/components/Switch/Switch"
+import bootle from "../../../assets/bootle.png"
+import FavouriteIco from "@/app/components/ui/Favourite"
 
 const Product = () => {
+  const [switchState, setSwitchState] = useState(true)
+
   const products = [
     {
       id: 0,
@@ -69,13 +74,24 @@ const Product = () => {
                 <Image src={arrow} alt={"arrow"} />
               </button>
             </div>
+            <div className={styles.product__content__right__switch}>
+              <Switch label='Notifications' />
+              <p>Безлактозное</p>
+            </div>
             <div className={styles.product__content__right__footer}>
               <h3>
                 290 <span>грн</span>
               </h3>
-              <button>
+              <button
+                className={styles.product__content__right__footer__basket}
+              >
                 <p>В корзину</p>
                 <Image src={cart} alt={"cart"} />
+              </button>
+              <button
+                className={styles.product__content__right__footer__favorite}
+              >
+                <FavouriteIco />
               </button>
             </div>
           </div>
