@@ -11,8 +11,9 @@ import FavouriteIco from "@/app/components/ui/Favourite"
 import UserIco from "@/app/components/ui/User"
 import BasketIco from "@/app/components/ui/Basket"
 import Cart from "../../ui/components/Cart/Cart"
+import AuthModal from "../../ui/components/auth-modal/AuthModal"
 
-const Header = ({ setIsShow, isShow, outside }: any) => {
+const Header = ({ setIsShow, isShow, outside, setIsShowModal, isShowModal }: any) => {
   return (
     <header className={styles.header}>
       <div className={styles.header__container}>
@@ -67,7 +68,7 @@ const Header = ({ setIsShow, isShow, outside }: any) => {
               >
                 <FavouriteIco />
               </button>
-              <button className={styles.header__content__buttons__list__user}>
+              <button onClick={() => setIsShowModal(!isShowModal)} className={styles.header__content__buttons__list__user}>
                 <UserIco />
               </button>
               <button

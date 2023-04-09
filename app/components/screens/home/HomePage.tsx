@@ -1,19 +1,17 @@
-import React from "react"
-import styles from "./HomePage.module.scss"
-import banner from "../../../assets/banner1.jpg"
-import CircleIco from "@/app/components/ui/Circle"
-import Products from "@/app/components/screens/home/products/Products"
-import sushiBanner from "../../../assets/sushi.png"
-import Image from "next/image"
-import map from "../../../assets/map.jpg"
-import app from "../../../assets/appstore.png"
-import gp from "../../../assets/gp.png"
-import Link from "next/link"
-import mobile from "../../../assets/mobile.png"
-import ArrowGreenIco from "@/app/components/ui/ArrowGren"
 import Navigation from "@/app/components/Navigation/Navigation"
+import Products from "@/app/components/screens/home/products/Products"
+import CircleIco from "@/app/components/ui/Circle"
+import Image from "next/image"
+import app from "../../../assets/appstore.png"
+import banner from "../../../assets/banner1.jpg"
+import gp from "../../../assets/gp.png"
+import map from "../../../assets/map.jpg"
+import mobile from "../../../assets/mobile.png"
+import sushiBanner from "../../../assets/sushi.png"
+import styles from "./HomePage.module.scss"
 
-const HomePage = () => {
+const HomePage = ({sushies}: any) => {
+  console.log(sushies, "sushies")
   return (
     <div className={styles.home}>
       <Navigation />
@@ -39,7 +37,7 @@ const HomePage = () => {
             ))}
           </div>
         </div>
-        <Products type={"homepage"} title='Суши' />
+        <Products type={"homepage"} data={sushies} title='Суши' />
         <Products type={"homepage"} title='Роллы' />
         <Products type={"homepage"} title='Сеты' />
         <div className={styles.home__offer}>

@@ -1,22 +1,21 @@
-import React from "react"
-import Product from "@/app/components/screens/home/products/product/Product"
-import styles from "./Products.module.scss"
-import { type } from "os"
-import chilly from "@/app/assets/chilly.png"
 import bottle from "@/app/assets/bottle.png"
-import green from "@/app/assets/green.png"
+import chilly from "@/app/assets/chilly.png"
 import fish from "@/app/assets/fish.png"
+import green from "@/app/assets/green.png"
+import Product from "@/app/components/screens/home/products/product/Product"
 import Image from "next/image"
 import Link from "next/link"
+import styles from "./Products.module.scss"
 
 export type typeProducts = "homepage" | "single"
 
 export interface IProducts {
   type: typeProducts
   title: string
+  sushies: any
 }
 
-const Products = ({ title, type }: IProducts) => {
+const Products = ({ title, type, data }: IProducts) => {
   const categories = [
     "Все",
     "Классические",
@@ -105,14 +104,15 @@ const Products = ({ title, type }: IProducts) => {
         </>
       )}
       <div className={styles.products__content}>
+        {data?.map(product => <Product product={product}/>)}
+        {/* <Product />
         <Product />
         <Product />
         <Product />
         <Product />
         <Product />
         <Product />
-        <Product />
-        <Product />
+        <Product /> */}
       </div>
     </Link>
   )

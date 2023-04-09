@@ -16,6 +16,17 @@
   background: #000;
 }
 
+.overlay__modal {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 77;
+  opacity: 0.6;
+  background: #000;
+}
+
 .main {
   flex: 1 1 auto;
 }
