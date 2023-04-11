@@ -1,15 +1,19 @@
-import HomePage from "@/app/components/screens/home/HomePage"
 import { ProductService } from '@/app/services/product.service'
+import dynamic from 'next/dynamic'
 
-const Home = ({sushies,sets,rolls}: any) => {
-  return <HomePage sushies={sushies} sets={sets} rolls={rolls}/>
+const HomePage = dynamic(() => import('@/app/components/screens/home/HomePage'), {
+  ssr: false,
+})
+
+const Home = ({ sushies, sets, rolls }: any) => {
+  return <HomePage sushies={sushies} sets={sets} rolls={rolls} />
 }
 
 export async function getStaticProps() {
   try {
-    const {data: sushies} = await ProductService.getAll("Суши")
-    const {data: sets} = await ProductService.getAll("Сеты")
-    const {data: rolls} = await ProductService.getAll("Ролы")
+    const { data: sushies } = await ProductService.getAll("sushies")
+    const { data: sets } = await ProductService.getAll("sets")
+    const { data: rolls } = await ProductService.getAll("rolls")
     return {
       props: {
         sushies,
@@ -17,20 +21,19 @@ export async function getStaticProps() {
         rolls
       },
       revalidate: 10,
-   
+
     }
   } catch (error) {
     return {
       props: {
-        sushies : [],
+        sushies: [],
         sets: [],
         rolls: []
       },
       revalidate: 10,
-   
     }
   }
- 
+
 }
 
 

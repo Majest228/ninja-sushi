@@ -1,20 +1,19 @@
-import React from "react"
-import styles from "./Navigation.module.scss"
-import Link from "next/link"
-import RollsIco from "@/app/components/ui/Rolls"
-import SushiIco from "@/app/components/ui/Sushi"
-import SettsIco from "@/app/components/ui/Setts"
 import BoulsIco from "@/app/components/ui/Bouls"
 import DrinksIco from "@/app/components/ui/Drinks"
+import RollsIco from "@/app/components/ui/Rolls"
+import SettsIco from "@/app/components/ui/Setts"
 import SousIco from "@/app/components/ui/Sous"
+import SushiIco from "@/app/components/ui/Sushi"
 import UnkownIco from "@/app/components/ui/Unkown"
+import Link from "next/link"
+import styles from "./Navigation.module.scss"
 
 const Navigation = ({ status }: any) => {
   return (
     <nav className={styles.navigation}>
       <ul className={styles.navigation__content}>
         <li className={styles.navigation__content__item}>
-          <Link href='/products/1'>
+          <Link href='/products/rolls'>
             <div className={styles.navigation__content__item__link}>
               <div className={styles.navigation__content__item__link__img}>
                 <RollsIco />
@@ -24,7 +23,7 @@ const Navigation = ({ status }: any) => {
           </Link>
         </li>
         <li className={styles.navigation__content__item}>
-          <Link href='/products/1'>
+          <Link href='/products/sushies'>
             <div className={styles.navigation__content__item__link}>
               <div className={styles.navigation__content__item__link__img}>
                 <SushiIco />
@@ -35,7 +34,7 @@ const Navigation = ({ status }: any) => {
           </Link>
         </li>
         <li className={styles.navigation__content__item}>
-          <Link href='/products/1'>
+          <Link href='/products/sets'>
             <div className={styles.navigation__content__item__link}>
               <div className={styles.navigation__content__item__link__img}>
                 <SettsIco />

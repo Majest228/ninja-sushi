@@ -1,13 +1,11 @@
-import React from "react"
-import styles from "./Product.module.scss"
+import fish from "@/app/assets/fish.png"
 import Navigation from "@/app/components/Navigation/Navigation"
 import Image from "next/image"
-import item from "../../../assets/item.png"
-import fish from "@/app/assets/fish.png"
 import arrow from "../../../assets/arrow-gray.png"
 import cart from "../../../assets/cart.png"
+import styles from "./Product.module.scss"
 
-const Product = () => {
+const Product = ({ product }) => {
   const products = [
     {
       id: 0,
@@ -30,13 +28,16 @@ const Product = () => {
       photo: fish,
     },
   ]
+  console.log('product', product)
+
   return (
-    <div className={styles.product}>
+    <div className={styles.product} >
       <Navigation />
       <div className={styles.product__container}>
         <div className={styles.product__content}>
           <div className={styles.product__content__left}>
-            <Image src={item} alt={"item"} />
+            <Image src={`http://localhost:8080/api/files/${product.productPath}`} width={645} height={416} alt={"item"} />
+
           </div>
           <div className={styles.product__content__right}>
             <div className={styles.product__content__right__tags}>
@@ -48,7 +49,7 @@ const Product = () => {
               </div>
             </div>
             <h3 className={styles.product__content__right__title}>
-              Филадельфия с угрем
+              {product.name}
             </h3>
             <p className={styles.product__content__right__price}>Вес: 320г</p>
             <span className={styles.product__content__right__list}>
@@ -71,7 +72,7 @@ const Product = () => {
             </div>
             <div className={styles.product__content__right__footer}>
               <h3>
-                290 <span>грн</span>
+                {product.weight} <span>грн</span>
               </h3>
               <button>
                 <p>В корзину</p>
@@ -81,7 +82,7 @@ const Product = () => {
           </div>
         </div>
       </div>
-    </div>
+    </div >
   )
 }
 

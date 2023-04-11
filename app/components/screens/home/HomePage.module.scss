@@ -248,8 +248,12 @@
       max-width: 565px;
       width: 100%;
 
-      button {
+      &__link {
+        display: flex;
+        justify-content: center;
         cursor: pointer;
+        align-items: center;
+        text-decoration: none;
         background: #00cc2d;
         border-radius: 12px;
         width: 311px;

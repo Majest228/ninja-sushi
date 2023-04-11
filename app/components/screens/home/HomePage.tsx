@@ -2,6 +2,7 @@ import Navigation from "@/app/components/Navigation/Navigation"
 import Products from "@/app/components/screens/home/products/Products"
 import CircleIco from "@/app/components/ui/Circle"
 import Image from "next/image"
+import Link from 'next/link'
 import app from "../../../assets/appstore.png"
 import banner from "../../../assets/banner1.jpg"
 import gp from "../../../assets/gp.png"
@@ -10,8 +11,7 @@ import mobile from "../../../assets/mobile.png"
 import sushiBanner from "../../../assets/sushi.png"
 import styles from "./HomePage.module.scss"
 
-const HomePage = ({sushies, rolls,sets}: any) => {
-  console.log(sushies, "sushies")
+const HomePage = ({ sushies, rolls, sets }: any) => {
   return (
     <div className={styles.home}>
       <Navigation />
@@ -27,7 +27,7 @@ const HomePage = ({sushies, rolls,sets}: any) => {
           <div className={styles.home__slider__content}>
             <h3>Ninja Sushi в Киеве! Пока только на левом берегу</h3>
             <p>Доставку делаем с 10:00 до 19:30</p>
-            <button>Перейти к новости</button>
+            <Link className={styles.home__slider__content__link} href={'/news'}>Перейти к новости</Link>
           </div>
           <div className={styles.home__slider__controller}>
             {[...new Array(4).keys()].map((i) => (
