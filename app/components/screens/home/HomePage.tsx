@@ -10,7 +10,7 @@ import mobile from "../../../assets/mobile.png"
 import sushiBanner from "../../../assets/sushi.png"
 import styles from "./HomePage.module.scss"
 
-const HomePage = ({sushies}: any) => {
+const HomePage = ({sushies, rolls,sets}: any) => {
   console.log(sushies, "sushies")
   return (
     <div className={styles.home}>
@@ -38,8 +38,8 @@ const HomePage = ({sushies}: any) => {
           </div>
         </div>
         <Products type={"homepage"} data={sushies} title='Суши' />
-        <Products type={"homepage"} title='Роллы' />
-        <Products type={"homepage"} title='Сеты' />
+        <Products type={"homepage"} data={rolls} title='Роллы' />
+        <Products type={"homepage"} data={sets} title='Сеты' />
         <div className={styles.home__offer}>
           <div className={styles.home__offer__content}>
             <h3 className={styles.home__offer__content__title}>
