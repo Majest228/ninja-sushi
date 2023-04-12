@@ -1,4 +1,7 @@
+import { useAppDispatch } from '@/app/hooks/useAppDispatch'
+import { register } from '@/app/redux/auth/auth.action'
 import Image from 'next/image'
+import { useState } from 'react'
 import apple from '../../../../assets/apple.png'
 import close from '../../../../assets/closemodal.png'
 import facebook from '../../../../assets/facebooklogin.png'
@@ -6,8 +9,20 @@ import google from '../../../../assets/google.png'
 import styles from './AuthModal.module.scss'
 
 const AuthModal = ({ isShowModal, setIsShowModal }: any) => {
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
+    const [login, setLogin] = useState("")
+
+    const dispatch = useAppDispatch()
+
+
+
     return (
-        <div className={styles.auth}>
+        <form onSubmit={e => {
+            e.preventDefault()
+            dispatch(register({ email, password, login }))
+            console.log("Рега пройдена")
+        }} className={styles.auth}>
             <button onClick={() => setIsShowModal(!isShowModal)} className={styles.auth__close}>
                 <Image src={close} alt="close" />
             </button>
@@ -16,14 +31,18 @@ const AuthModal = ({ isShowModal, setIsShowModal }: any) => {
                 <p className={styles.auth__content__desc}>Введите вашу почту и пароль</p>
                 <div className={styles.auth__content__block}>
                     <div className={styles.auth__content__block__item}>
+                        <label htmlFor="">Почта</label>
+                        <input onChange={e => setEmail(e.target.value)} type="email" />
+                    </div>
+                    <div className={styles.auth__content__block__item}>
                         <label htmlFor="">Имя</label>
-                        <input type="email" />
+                        <input onChange={e => setLogin(e.target.value)} type="text" />
                     </div>
                     <div className={styles.auth__content__block__item}>
                         <label htmlFor="">Пароль</label>
-                        <input type="password" />
+                        <input onChange={e => setPassword(e.target.value)} type="password" />
                     </div>
-                    <button className={styles.auth__content__block__button}>Войти по номеру телефона</button>
+                    <button type='submit' className={styles.auth__content__block__button}>Войти в систему</button>
                     <span className={styles.auth__content__block__span}>Или</span>
                     <div className={styles.auth__content__block__buttons}>
                         <button className={styles.auth__content__block__buttons__google}>
@@ -41,7 +60,7 @@ const AuthModal = ({ isShowModal, setIsShowModal }: any) => {
                     </div>
                 </div>
             </div>
-        </div>
+        </form>
     )
 }
 

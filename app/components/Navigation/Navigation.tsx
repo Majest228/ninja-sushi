@@ -8,7 +8,7 @@ import UnkownIco from "@/app/components/ui/Unkown"
 import Link from "next/link"
 import styles from "./Navigation.module.scss"
 
-const Navigation = ({ status }: any) => {
+const Navigation = ({ status, categories, }: any) => {
   return (
     <nav className={styles.navigation}>
       <ul className={styles.navigation__content}>

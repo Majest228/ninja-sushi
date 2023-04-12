@@ -1,15 +1,13 @@
-import React, { useState } from "react"
-import styles from "./AllProducts.module.scss"
-
-import Products from "@/app/components/screens/home/products/Products"
 import Navigation from "@/app/components/Navigation/Navigation"
+import styles from "./AllProducts.module.scss"
+import Products from "./Products"
 
-const AllProducts = () => {
+const AllProducts = ({ products, categories }) => {
   return (
     <div className={styles.all}>
-      <Navigation />
+      <Navigation categories={categories} products={products} />
       <div className={styles.all__container}>
-        <Products type={"single"} title={"Суши"} />
+        <Products products={products} />
         <button className={styles.all__show}>Показать больше</button>
       </div>
     </div>

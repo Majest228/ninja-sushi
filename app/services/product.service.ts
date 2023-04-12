@@ -6,5 +6,9 @@ export const ProductService = {
 	},
 	async getById(id: number) {
 		return axiosWithoutAuth.get(`product/by/${id}`)
+	},
+	async getManyByIdCategory(name: string) {
+		return axiosWithoutAuth.get(`product/many/${name}`)
 	}
+
 }
