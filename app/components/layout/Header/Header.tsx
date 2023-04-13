@@ -12,8 +12,12 @@ import UserIco from "@/app/components/ui/User"
 import BasketIco from "@/app/components/ui/Basket"
 import Cart from "../../ui/components/Cart/Cart"
 import AuthModal from "../../ui/components/auth-modal/AuthModal"
-
+import { useAuth } from "@/app/hooks/useAuth"
+import { useAppSelector } from "@/app/hooks/useAppSelector"
+import useravatar from "../../../assets/user.png"
 const Header = ({ setIsShow, isShow, outside, setIsShowModal, isShowModal }: any) => {
+  const { user } = useAuth()
+
   return (
     <header className={styles.header}>
       <div className={styles.header__container}>
@@ -53,9 +57,7 @@ const Header = ({ setIsShow, isShow, outside, setIsShowModal, isShowModal }: any
           {/*phone*/}
           <div className={styles.header__content__phone}>
             <PhoneIco />
-            <p className={styles.header__content__phone__number}>
-              +38 097 699 34 38
-            </p>
+            <p className={styles.header__content__phone__number}>+38 097 699 34 38</p>
           </div>
           {/*buttons*/}
           <div className={styles.header__content__buttons}>
@@ -63,14 +65,22 @@ const Header = ({ setIsShow, isShow, outside, setIsShowModal, isShowModal }: any
               <button className={styles.header__content__buttons__list__notice}>
                 <NoticeIco />
               </button>
-              <button
-                className={styles.header__content__buttons__list__favourite}
-              >
+              <button className={styles.header__content__buttons__list__favourite}>
                 <FavouriteIco />
               </button>
-              <button onClick={() => setIsShowModal(!isShowModal)} className={styles.header__content__buttons__list__user}>
-                <UserIco />
-              </button>
+              {user ? (
+                <button className={styles.header__content__buttons__list__profile}>
+                  <Image src={useravatar} alt='user' width={36} height={36} />
+                </button>
+              ) : (
+                <button
+                  onClick={() => setIsShowModal(!isShowModal)}
+                  className={styles.header__content__buttons__list__user}
+                >
+                  <UserIco />
+                </button>
+              )}
+
               <button
                 onClick={() => setIsShow(true)}
                 className={styles.header__content__buttons__list__basket}
@@ -87,6 +97,7 @@ const Header = ({ setIsShow, isShow, outside, setIsShowModal, isShowModal }: any
               ""
             )}
           </div>
+          <div className={styles.header__burger}></div>
         </div>
       </div>
     </header>

@@ -6,8 +6,10 @@
   position: relative;
   width: 100%;
   z-index: 66;
-
-  &__container {}
+  &__burger {
+  }
+  &__container {
+  }
 
   &__content {
     display: flex;
@@ -115,7 +117,18 @@
           height: 56px;
           background: none;
         }
-
+        &__profile {
+          cursor: pointer;
+          border: 1px solid #d2d2d7;
+          border-radius: 12px;
+          width: 56px;
+          height: 56px;
+          background: none;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          margin-right: 12px;
+        }
         &__user {
           margin-right: 12px;
           cursor: pointer;
@@ -146,6 +159,55 @@
             line-height: 24px;
             color: #686870;
           }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1400px) {
+  .header {
+    &__content {
+      &__buttons {
+        &__list {
+          &__basket {
+            width: 56px;
+            height: 56px;
+            p {
+              display: none;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1350px) {
+  .header {
+    &__content {
+      &__phone {
+        display: none;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1125px) {
+  .header {
+    &__content {
+      &__menu {
+        display: none;
+      }
+      &__navigation {
+        display: none;
+      }
+      &__buttons {
+        display: none;
+      }
+      &__logo {
+        &__button {
+          display: none;
         }
       }
     }
