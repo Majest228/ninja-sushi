@@ -1,11 +1,15 @@
 import Footer from "@/app/components/layout/Footer/Footer"
-import Header from "@/app/components/layout/Header/Header"
 import { ILayout } from "@/app/components/layout/layout.interface"
 import ArrowGreenIco from "@/app/components/ui/ArrowGren"
 import useOutsideClick from "@/app/hooks/useOutsideClick"
+import dynamic from 'next/dynamic'
 import { useEffect, useRef, useState } from "react"
 import AuthModal from "../ui/components/auth-modal/AuthModal"
 import styles from "./Layout.module.scss"
+
+const Header = dynamic(() => import('@/app/components/layout/Header/Header'), {
+  ssr: false,
+})
 
 const Layout = ({ children }: ILayout): JSX.Element => {
   const [isShow, setIsShow] = useState(false)
@@ -19,14 +23,14 @@ const Layout = ({ children }: ILayout): JSX.Element => {
   useEffect(() => {
     if (isShowModal) {
       document.body.style.overflow = 'hidden'
-      document.body.style.top = `-${window.scrollY}px`;
+      document.body.style.top = `-${window.scrollY}px`
     }
     else {
-      document.body.style.overflow = "";
-      window.onscroll = () => { window.scroll(); };
+      document.body.style.overflow = ""
+      window.onscroll = () => { window.scroll() }
     }
   }, [isShowModal])
-  
+
   return (
     <div className={styles.wrapper}>
       {isShow ? <div className={styles.overlay}></div> : ""}

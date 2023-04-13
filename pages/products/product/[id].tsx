@@ -1,5 +1,5 @@
 import { ProductService } from '@/app/services/product.service'
-import Product from "../../../app/components/screens/home/products/product/Product"
+import Product from "../../../app/components/screens/single/Single"
 
 const ProductPage = ({ product }: any) => {
   return <Product product={product} />

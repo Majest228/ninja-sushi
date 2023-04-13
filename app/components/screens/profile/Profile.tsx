@@ -1,16 +1,21 @@
-import styles from "./Profile.module.scss"
-import histore from "../../../assets/histore.png"
+import { UserService } from '@/app/services/user.service'
+import { useQuery } from '@tanstack/react-query'
+import Image from "next/image"
+import basket from "../../../assets/basket.png"
 import favorite from "../../../assets/favorite.png"
 import gps from "../../../assets/gps.png"
-import sun from "../../../assets/sun.png"
-import Image from "next/image"
-import user from "../../../assets/user.png"
+import histore from "../../../assets/histore.png"
+import map from "../../../assets/map.png"
 import pencil from "../../../assets/pencil.png"
 import plus from "../../../assets/plus.png"
-import map from "../../../assets/map.png"
-import basket from "../../../assets/basket.png"
-
+import sun from "../../../assets/sun.png"
+import user from "../../../assets/user.png"
+import styles from "./Profile.module.scss"
 const Profile = () => {
+  const { data, isLoading } = useQuery({ queryKey: ["profile"], queryFn: () => UserService.getProfile() })
+
+  console.log(data)
+
   return (
     <div className={styles.profile}>
       <div className={styles.profile__container}>
@@ -81,7 +86,7 @@ const Profile = () => {
                       styles.profile__content__left__user__info__text__name
                     }
                   >
-                    Ашот
+                    {isLoading ? "" : data.name}
                   </h3>
                   <button
                     className={
@@ -96,10 +101,10 @@ const Profile = () => {
                     styles.profile__content__left__user__info__description
                   }
                 >
-                  Lifetv277@gmaIl.com
+                  {isLoading ? "" : data.email}
                 </p>
                 <p className={styles.profile__content__left__user__info__phone}>
-                  +380976986848
+                  {isLoading ? "" : data.phone}
                 </p>
               </div>
             </div>

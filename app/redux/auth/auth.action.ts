@@ -1,3 +1,4 @@
+import { useSaveToStorage } from '@/app/hooks/useSaveToStorage'
 import { AuthService } from "@/app/services/auth.service"
 import { IAuth, IAuthForm } from "@/app/types/auth.interface"
 import { createAsyncThunk } from "@reduxjs/toolkit"
@@ -18,6 +19,7 @@ export const login: any = createAsyncThunk<IAuth, IAuthForm>(
   async ({ email, password }: IAuth) => {
     try {
       const response = await AuthService.login(email, password)
+      useSaveToStorage(response.data)
       return response.data
     } catch (e) {
       console.error(e)

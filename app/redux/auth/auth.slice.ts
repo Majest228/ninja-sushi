@@ -1,12 +1,10 @@
-import { useGetStoreLocal } from "@/app/hooks/useGetStoreLocal"
 import { createSlice } from "@reduxjs/toolkit"
 import { login, register } from "./auth.action"
-import Cookies from "js-cookie"
-import { useCreateCookies } from "@/app/hooks/useCreateCookies"
 
 const initialState = {
-  user: useGetStoreLocal("user"),
-  isLoading: true,
+  user: typeof window !== 'undefined' ? localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user') as string) : null : null,
+  isLoading: false
+
 }
 
 export const authSlice = createSlice({
@@ -31,7 +29,7 @@ export const authSlice = createSlice({
       .addCase(login.fulfilled, (state, { payload }) => {
         state.isLoading = true
         state.user = payload.user
-        useCreateCookies(payload.accessToken, payload.refreshToken)
+
       })
       .addCase(login.rejected, (state) => {
         state.isLoading = false

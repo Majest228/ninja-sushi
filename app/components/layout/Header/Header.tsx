@@ -1,20 +1,17 @@
-import React, { useState, useRef } from "react"
-import styles from "./Header.module.scss"
-import Image from "next/image"
-import logo from "../../../assets/logo.png"
-import country from "../../../assets/country.png"
 import ArrowIco from "@/app/components/ui/Arrow"
-import Link from "next/link"
-import PhoneIco from "@/app/components/ui/Phone"
-import NoticeIco from "@/app/components/ui/Notice"
-import FavouriteIco from "@/app/components/ui/Favourite"
-import UserIco from "@/app/components/ui/User"
 import BasketIco from "@/app/components/ui/Basket"
-import Cart from "../../ui/components/Cart/Cart"
-import AuthModal from "../../ui/components/auth-modal/AuthModal"
+import FavouriteIco from "@/app/components/ui/Favourite"
+import NoticeIco from "@/app/components/ui/Notice"
+import PhoneIco from "@/app/components/ui/Phone"
+import UserIco from "@/app/components/ui/User"
 import { useAuth } from "@/app/hooks/useAuth"
-import { useAppSelector } from "@/app/hooks/useAppSelector"
+import Image from "next/image"
+import Link from "next/link"
+import country from "../../../assets/country.png"
+import logo from "../../../assets/logo.png"
 import useravatar from "../../../assets/user.png"
+import Cart from "../../ui/components/Cart/Cart"
+import styles from "./Header.module.scss"
 const Header = ({ setIsShow, isShow, outside, setIsShowModal, isShowModal }: any) => {
   const { user } = useAuth()
 
@@ -69,9 +66,9 @@ const Header = ({ setIsShow, isShow, outside, setIsShowModal, isShowModal }: any
                 <FavouriteIco />
               </button>
               {user ? (
-                <button className={styles.header__content__buttons__list__profile}>
+                <Link href={'/profile'} className={styles.header__content__buttons__list__profile}>
                   <Image src={useravatar} alt='user' width={36} height={36} />
-                </button>
+                </Link>
               ) : (
                 <button
                   onClick={() => setIsShowModal(!isShowModal)}

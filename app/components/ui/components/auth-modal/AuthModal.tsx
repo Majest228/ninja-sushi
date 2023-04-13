@@ -1,5 +1,5 @@
 import { useAppDispatch } from "@/app/hooks/useAppDispatch"
-import { register, login } from "@/app/redux/auth/auth.action"
+import { login, register } from "@/app/redux/auth/auth.action"
 import Image from "next/image"
 import { useState } from "react"
 import apple from "../../../../assets/apple.png"
@@ -14,13 +14,16 @@ const AuthModal = ({ isShowModal, setIsShowModal }: any) => {
   const [name, setName] = useState("")
   const [type, setType] = useState("login")
   const dispatch = useAppDispatch()
-
   const onSubmit = () => {
+
     try {
-      type == "login"
-        ? dispatch(login({ email, password }))
-        : dispatch(register({ email, password, name }))
+      if (type == "login") {
+        dispatch(login({ email, password }))
+      } else {
+        dispatch(register({ email, password, login: name }))
+      }
       setIsShowModal(!isShowModal)
+
     } catch (error) {
       console.error(error)
     }
@@ -97,6 +100,9 @@ const AuthModal = ({ isShowModal, setIsShowModal }: any) => {
               <p>Войти через Apple id</p>
             </button>
           </div>
+          {type == 'login' ?
+            <button type='button' onClick={() => setType("")}>Нет аккаунта?</button>
+            : <button type='button' onClick={() => setType("login")}>Есть аккаунт?</button>}
         </div>
       </div>
     </form>
