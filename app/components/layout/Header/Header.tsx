@@ -66,7 +66,7 @@ const Header = ({ setIsShow, isShow, outside, setIsShowModal, isShowModal }: any
                 <FavouriteIco />
               </button>
               {user ? (
-                <Link href={'/profile'} className={styles.header__content__buttons__list__profile}>
+                <Link href={"/profile"} className={styles.header__content__buttons__list__profile}>
                   <Image src={useravatar} alt='user' width={36} height={36} />
                 </Link>
               ) : (

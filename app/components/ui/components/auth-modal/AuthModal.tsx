@@ -15,7 +15,6 @@ const AuthModal = ({ isShowModal, setIsShowModal }: any) => {
   const [type, setType] = useState("login")
   const dispatch = useAppDispatch()
   const onSubmit = () => {
-
     try {
       if (type == "login") {
         dispatch(login({ email, password }))
@@ -23,7 +22,6 @@ const AuthModal = ({ isShowModal, setIsShowModal }: any) => {
         dispatch(register({ email, password, login: name }))
       }
       setIsShowModal(!isShowModal)
-
     } catch (error) {
       console.error(error)
     }
@@ -87,22 +85,28 @@ const AuthModal = ({ isShowModal, setIsShowModal }: any) => {
 
           <span className={styles.auth__content__block__span}>Или</span>
           <div className={styles.auth__content__block__buttons}>
-            <button className={styles.auth__content__block__buttons__google}>
+            <button type='button' className={styles.auth__content__block__buttons__google}>
               <Image src={google} alt='google' />
               <p>Google</p>
             </button>
-            <button className={styles.auth__content__block__buttons__facebook}>
+            <button type='button' className={styles.auth__content__block__buttons__facebook}>
               <Image src={facebook} alt='facebook' />
               <p>Facebook</p>
             </button>
-            <button className={styles.auth__content__block__buttons__apple}>
+            <button type='button' className={styles.auth__content__block__buttons__apple}>
               <Image src={apple} alt='apple' />
               <p>Войти через Apple id</p>
             </button>
           </div>
-          {type == 'login' ?
-            <button type='button' onClick={() => setType("")}>Нет аккаунта?</button>
-            : <button type='button' onClick={() => setType("login")}>Есть аккаунт?</button>}
+          {type == "login" ? (
+            <button className={styles.auth__switch} type='button' onClick={() => setType("")}>
+              Нет аккаунта?
+            </button>
+          ) : (
+            <button className={styles.auth__switch} type='button' onClick={() => setType("login")}>
+              Есть аккаунт?
+            </button>
+          )}
         </div>
       </div>
     </form>
