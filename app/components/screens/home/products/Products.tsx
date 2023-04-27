@@ -15,15 +15,7 @@ export interface IProducts {
 }
 
 const Products = ({ title, type, data }: IProducts) => {
-  const categories = [
-    "Все",
-    "Классические",
-    "Маки",
-    "Драконы",
-    "Запеченные",
-    "Феликсы",
-    "Сладкие",
-  ]
+  const categories = ["Все", "Классические", "Маки", "Драконы", "Запеченные", "Феликсы", "Сладкие"]
 
   const types = [
     {
@@ -66,17 +58,19 @@ const Products = ({ title, type, data }: IProducts) => {
     },
   ]
   return (
-    <Link href={`/products/product/${1}`} className={styles.products}>
+    <div className={styles.products}>
       <div className={styles.products__header}>
-        <h3 className={styles.products__header__title}>{title}</h3>
-        <button className={styles.products__header__view}>
-          Смотреть все
-        </button>
+        <Link href={`/products/rolls`} className={styles.products__header__title}>
+          {title}
+        </Link>
+        <button className={styles.products__header__view}>Смотреть все</button>
       </div>
       <div className={styles.products__content}>
-        {data?.map(product => <Product product={product} />)}
+        {data?.map((product) => (
+          <Product product={product} />
+        ))}
       </div>
-    </Link>
+    </div>
   )
 }
 

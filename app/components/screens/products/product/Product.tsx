@@ -3,10 +3,10 @@ import PlusIco from "@/app/components/ui/Plus"
 import Image from "next/image"
 import Link from "next/link"
 import styles from "./Product.module.scss"
-
+//
 const Product = ({ product }: any) => {
   return (
-    <Link href={`/products/product/${product.id}`} className={styles.product}>
+    <div className={styles.product}>
       <div className={styles.product__content}>
         <Image
           src={`http://localhost:8080/api/files/${product.productPath}`}
@@ -14,7 +14,9 @@ const Product = ({ product }: any) => {
           height={290}
           alt='product'
         />
-        <h3 className={styles.product__content__name}>{product.name}</h3>
+        <Link href={`/products/product/${product.id}`} className={styles.product__content__name}>
+          {product.name}
+        </Link>
         <span className={styles.product__content__weight}>Вес: {product.weight} г</span>
         <p className={styles.product__content__desc}>
           Нори, рис, японский майонез, бальзамик, трюфельная сальса, кунжутное масло
@@ -36,7 +38,7 @@ const Product = ({ product }: any) => {
           </div>
         </div>
       </div>
-    </Link>
+    </div>
   )
 }
 

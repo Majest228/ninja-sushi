@@ -2,15 +2,22 @@ import Favourite from "@/app/components/ui/Favourite"
 import PlusIco from "@/app/components/ui/Plus"
 import Image from "next/image"
 import styles from "./Product.module.scss"
+import Link from "next/link"
 const Product = ({ product }: any) => {
   return (
     <div className={styles.product}>
-      <Image className={styles.product__image} src={`http://localhost:8080/api/files/${product.productPath}`} width={331} height={270} alt='product' />
-      <h3 className={styles.product__title}>{product.name}</h3>
+      <Image
+        className={styles.product__image}
+        src={`http://localhost:8080/api/files/${product.productPath}`}
+        width={331}
+        height={270}
+        alt='product'
+      />
+      <Link href={`/products/product/${product.id}`} className={styles.product__title}>
+        {product.name}
+      </Link>
       <p className={styles.product__weight}>Вес: {product.weight} г</p>
-      <p className={styles.product__desc}>
-        {product.description}
-      </p>
+      <p className={styles.product__desc}>{product.description}</p>
       <div className={styles.product__footer}>
         <p className={styles.product__footer__price}>
           {product.price} <span>грн</span>
