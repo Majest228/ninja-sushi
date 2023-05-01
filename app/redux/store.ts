@@ -1,10 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit"
 import { rootReducer } from "./root-reducer"
+import { addressApi } from "./rtk-query/address.api"
+import { userApi } from "./rtk-query/profile.api"
 
 export function makeStore() {
   return configureStore({
     reducer: rootReducer,
-    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(),
+    middleware: (getDefaultMiddleware) =>
+      getDefaultMiddleware().concat(addressApi.middleware, userApi.middleware),
     devTools: true,
   })
 }

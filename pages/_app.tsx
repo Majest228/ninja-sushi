@@ -1,18 +1,22 @@
 import Layout from "@/app/components/layout/Layout"
-import { store } from '@/app/redux/store'
+import AuthProvider from "@/app/providers/auth-provider/AuthProvider"
+import { TypeComponentAuthFields } from "@/app/providers/auth-provider/auth.provider.types"
+import { store } from "@/app/redux/store"
 import "@/styles/globals.scss"
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import type { AppProps } from "next/app"
-import { Provider } from 'react-redux'
+import { Provider } from "react-redux"
 
-export default function App({ Component, pageProps }: AppProps) {
+export default function App({ Component, pageProps }: AppProps & TypeComponentAuthFields) {
   const queryClient = new QueryClient()
   return (
     <QueryClientProvider client={queryClient}>
       <Provider store={store}>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
+        <AuthProvider Component={{ isOnlyUser: Component.isOnlyUser }}>
+          <Layout>
+            <Component {...pageProps} />
+          </Layout>
+        </AuthProvider>
       </Provider>
     </QueryClientProvider>
   )

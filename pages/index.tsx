@@ -1,11 +1,12 @@
-import { ProductService } from '@/app/services/product.service'
-import dynamic from 'next/dynamic'
+import { NextPageAuth } from "@/app/providers/auth-provider/auth.provider.types"
+import { ProductService } from "@/app/services/product.service"
+import dynamic from "next/dynamic"
 
-const HomePage = dynamic(() => import('@/app/components/screens/home/HomePage'), {
+const HomePage = dynamic(() => import("@/app/components/screens/home/HomePage"), {
   ssr: false,
 })
 
-const Home = ({ sushies, sets, rolls }: any) => {
+const Home: NextPageAuth = ({ sushies, sets, rolls }: any) => {
   return <HomePage sushies={sushies} sets={sets} rolls={rolls} />
 }
 
@@ -18,23 +19,20 @@ export async function getStaticProps() {
       props: {
         sushies,
         sets,
-        rolls
+        rolls,
       },
       revalidate: 10,
-
     }
   } catch (error) {
     return {
       props: {
         sushies: [],
         sets: [],
-        rolls: []
+        rolls: [],
       },
       revalidate: 10,
     }
   }
-
 }
-
 
 export default Home

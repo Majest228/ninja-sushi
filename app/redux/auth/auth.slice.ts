@@ -1,10 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit"
-import { login, register } from "./auth.action"
+import { checkAuth, login, logout, register } from "./auth.action"
 
 const initialState = {
-  user: typeof window !== 'undefined' ? localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user') as string) : null : null,
-  isLoading: false
-
+  user:
+    typeof window !== "undefined"
+      ? localStorage.getItem("user")
+        ? JSON.parse(localStorage.getItem("user") as string)
+        : null
+      : null,
+  isLoading: false,
 }
 
 export const authSlice = createSlice({
@@ -29,11 +33,17 @@ export const authSlice = createSlice({
       .addCase(login.fulfilled, (state, { payload }) => {
         state.isLoading = true
         state.user = payload.user
-
       })
       .addCase(login.rejected, (state) => {
         state.isLoading = false
         state.user = null
+      })
+      .addCase(logout.fulfilled, (state) => {
+        state.isLoading = false
+        state.user = null
+      })
+      .addCase(checkAuth.fulfilled, (state, action) => {
+        state.user = action.payload.user
       })
   },
 })
