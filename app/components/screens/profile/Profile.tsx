@@ -25,7 +25,9 @@ import { ILayout } from "../../layout/layout.interface"
 import Link from "next/link"
 import { IProfile } from "./profile.interface"
 import classNames from "classnames"
+import ProfileModal from "../../ui/components/profile-modal/ProfileModal"
 const Profile = ({ children, active }: IProfile) => {
+  const [isShow, setIsShow] = useState(false)
   const {
     isLoading: isLoadingProfile,
     refetch: refetchProfile,
@@ -34,6 +36,7 @@ const Profile = ({ children, active }: IProfile) => {
   console.log(active)
   return (
     <div className={styles.profile}>
+      {isShow ? <div className={styles.profile__overlay}></div> : ""}
       <div className={styles.profile__container}>
         <div className={styles.profile__content}>
           <div className={styles.profile__content__left}>
@@ -117,7 +120,10 @@ const Profile = ({ children, active }: IProfile) => {
                   <h3 className={styles.profile__content__left__user__info__text__name}>
                     {isLoadingProfile ? "" : profile?.name}
                   </h3>
-                  <button className={styles.profile__content__left__user__info__text__button}>
+                  <button
+                    onClick={() => setIsShow(!isShow)}
+                    className={styles.profile__content__left__user__info__text__button}
+                  >
                     <Image src={pencil} alt='pencil' />
                   </button>
                 </div>
@@ -133,6 +139,7 @@ const Profile = ({ children, active }: IProfile) => {
           <div className={styles.profile__content__right}>{children}</div>
         </div>
       </div>
+      {isShow ? <ProfileModal setIsShow={setIsShow} /> : ""}
     </div>
   )
 }

@@ -34,6 +34,7 @@
           }
           &__right {
             display: flex;
+
             &__end {
               &__title {
                 font-style: normal;
@@ -165,7 +166,50 @@
               align-items: center;
             }
             &__right {
+              display: flex;
+              align-items: center;
+              &__count {
+                margin-right: 24px;
+                &__title {
+                  font-style: normal;
+                  font-weight: 400;
+                  font-size: 12px;
+                  line-height: 16px;
+                  color: #9e9e9e;
+                }
+                &__sum {
+                  font-style: normal;
+                  font-weight: 700;
+                  font-size: 16px;
+                  line-height: 24px;
+                  color: #1d1d1f;
+                }
+              }
+              &__result {
+                &__title {
+                  font-style: normal;
+                  font-weight: 400;
+                  font-size: 12px;
+                  line-height: 16px;
+                  color: #9e9e9e;
+                }
+                &__sum {
+                  font-style: normal;
+                  font-weight: 700;
+                  font-size: 16px;
+                  line-height: 24px;
+                  color: #1d1d1f;
+                  span {
+                    font-style: normal;
+                    font-weight: 700;
+                    font-size: 11px;
+                    line-height: 13px;
+                    color: #686870;
+                  }
+                }
+              }
               &__price {
+                margin-right: 24px;
                 &__title {
                   font-style: normal;
                   font-weight: 400;
