@@ -14,9 +14,11 @@ export const userApi = createApi({
   endpoints: (builder) => ({
     getProfile: builder.query({
       query: () => "/user/profile",
+      providesTags: ["User"],
     }),
     updateProfile: builder.mutation({
       query: (data) => ({ body: data, url: "/user/update", method: "PATCH" }),
+      invalidatesTags: ["User"],
     }),
   }),
 })

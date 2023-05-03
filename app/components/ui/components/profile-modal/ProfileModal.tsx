@@ -3,6 +3,7 @@ import styles from "./ProfileModal.module.scss"
 import close from "../../../../assets/closemodal.png"
 import { useEffect, useState } from "react"
 import { useGetProfileQuery, useUpdateProfileMutation } from "@/app/redux/rtk-query/profile.api"
+import InputMask from "react-input-mask"
 const ProfileModal = ({ setIsShow }: any) => {
   const {
     isLoading: isLoadingProfile,
@@ -17,8 +18,10 @@ const ProfileModal = ({ setIsShow }: any) => {
   const [mutation] = useUpdateProfileMutation()
 
   const submitDate = () => {
-    mutation({ name, login, email })
+    mutation({ name, login, email }).unwrap()
   }
+
+  useEffect(() => console.log(phone), [phone])
 
   return (
     <form
@@ -69,7 +72,19 @@ const ProfileModal = ({ setIsShow }: any) => {
               type='text'
             />
           </div>
-          <div className={styles.profile__content__main}></div>
+          <label className={styles.profile__content__label} htmlFor=''>
+            Имя
+          </label>
+          <div className={styles.profile__content__main}>
+            {/* <InputMask phone={phone} setPhone={setPhone} /> */}
+
+            <InputMask
+              value={phone}
+              onChange={(e: any) => setPhone(e.target.value)}
+              mask='+7\(999) 999-99-99'
+              maskChar=' '
+            />
+          </div>
         </div>
         <button type='submit' className={styles.profile__content__button}>
           Сохранить изменения

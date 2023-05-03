@@ -124,7 +124,7 @@ const Profile = ({ children, active }: IProfile) => {
                     onClick={() => setIsShow(!isShow)}
                     className={styles.profile__content__left__user__info__text__button}
                   >
-                    <Image src={pencil} alt='pencil' />
+                    <Image src={pencil} alt='penFcil' />
                   </button>
                 </div>
                 <p className={styles.profile__content__left__user__info__description}>

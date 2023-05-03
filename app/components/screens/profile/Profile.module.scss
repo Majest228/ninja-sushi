@@ -1,6 +1,39 @@
 .profile {
   z-index: 75;
   position: relative;
+  &__favorite {
+    &__tittle {
+      margin-bottom: 24px;
+      font-style: normal;
+      font-weight: 700;
+      font-size: 48px;
+      line-height: 64px;
+      color: #1d1d1f;
+    }
+    &__content {
+      display: flex;
+      padding: 40px 322px 40px 40px;
+      background: #ffffff;
+      border-radius: 12px;
+      &__tittle {
+        font-style: normal;
+        font-weight: 500;
+        font-size: 32px;
+        line-height: 40px;
+        color: #1d1d1f;
+      }
+      &__description {
+        font-style: normal;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 20px;
+        color: #686870;
+      }
+      &__block {
+        padding-left: 32px;
+      }
+    }
+  }
   &__overlay {
     position: fixed;
     top: 0;
