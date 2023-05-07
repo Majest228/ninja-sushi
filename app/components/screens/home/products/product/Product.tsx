@@ -3,7 +3,10 @@ import PlusIco from "@/app/components/ui/Plus"
 import Image from "next/image"
 import styles from "./Product.module.scss"
 import Link from "next/link"
+import { useAppDispatch } from "@/app/hooks/useAppDispatch"
+import { toggleFavorite } from "@/app/redux/favorite/favorite.slice"
 const Product = ({ product }: any) => {
+  const dispatch = useAppDispatch()
   return (
     <div className={styles.product}>
       <Image
@@ -23,7 +26,13 @@ const Product = ({ product }: any) => {
           {product.price} <span>грн</span>
         </p>
         <div className={styles.product__footer__buttons}>
-          <button className={styles.product__footer__buttons__favourite}>
+          <button
+            onClick={() => {
+              console.log("хз чо")
+              dispatch(toggleFavorite(product))
+            }}
+            className={styles.product__footer__buttons__favourite}
+          >
             <Favourite />
           </button>
           <button className={styles.product__footer__buttons__plus}>
