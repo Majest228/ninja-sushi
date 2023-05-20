@@ -2,9 +2,14 @@ import bottle from "@/app/assets/bottle.png"
 import chilly from "@/app/assets/chilly.png"
 import fish from "@/app/assets/fish.png"
 import green from "@/app/assets/green.png"
-import Product from "@/app/components/screens/home/products/product/Product"
 import Link from "next/link"
 import styles from "./Products.module.scss"
+import { useGetFavoriteByIdQuery } from "@/app/redux/rtk-query/favorite.api"
+import dynamic from "next/dynamic"
+
+const Product = dynamic(() => import("@/app/components/screens/home/products/product/Product"), {
+  ssr: false,
+})
 
 export type typeProducts = "homepage" | "single"
 
@@ -16,7 +21,7 @@ export interface IProducts {
 
 const Products = ({ title, type, data }: IProducts) => {
   const categories = ["Все", "Классические", "Маки", "Драконы", "Запеченные", "Феликсы", "Сладкие"]
-
+  const { data: favoriteFetch, isLoading: favoriteLoading } = useGetFavoriteByIdQuery("")
   const types = [
     {
       id: 0,
@@ -67,7 +72,13 @@ const Products = ({ title, type, data }: IProducts) => {
       </div>
       <div className={styles.products__content}>
         {data?.map((product) => (
-          <Product product={product} />
+          <Product
+            product={product}
+            favoriteCheck={
+              favoriteLoading ? null : favoriteFetch?.some((item) => item.product.id == product.id)
+            }
+            favoriteLoading={favoriteLoading}
+          />
         ))}
       </div>
     </div>

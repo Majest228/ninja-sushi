@@ -4,12 +4,15 @@ import fish from "@/app/assets/fish.png"
 import green from "@/app/assets/green.png"
 import Image from "next/image"
 import styles from "./AllProducts.module.scss"
-import Product from "./product/Product"
+import dynamic from "next/dynamic"
+import { useGetFavoriteByIdQuery } from "@/app/redux/rtk-query/favorite.api"
+
+const Product = dynamic(() => import("../home/products/product/Product"), { ssr: false })
 
 const Products = ({ products }: any) => {
   console.log("products", products)
   const categories = ["Все", "Классические", "Маки", "Драконы", "Запеченные", "Феликсы", "Сладкие"]
-
+  const { data: favoriteFetch, isLoading: favoriteLoading } = useGetFavoriteByIdQuery("")
   const types = [
     {
       id: 0,
@@ -78,7 +81,12 @@ const Products = ({ products }: any) => {
       </div>
       <div className={styles.all__product__content}>
         {products.map((product) => (
-          <Product product={product} />
+          <Product
+            product={product}
+            favoriteCheck={
+              favoriteLoading ? null : favoriteFetch.some((item) => item.product.id == product.id)
+            }
+          />
         ))}
       </div>
     </div>

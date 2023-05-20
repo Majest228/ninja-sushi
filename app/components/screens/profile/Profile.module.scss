@@ -1,5 +1,4 @@
 .profile {
-  z-index: 75;
   position: relative;
   &__favorite {
     &__tittle {
@@ -15,6 +14,13 @@
       padding: 40px 322px 40px 40px;
       background: #ffffff;
       border-radius: 12px;
+      &__products {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, 379px);
+        justify-content: center;
+        row-gap: 20px;
+        column-gap: 20px;
+      }
       &__tittle {
         font-style: normal;
         font-weight: 500;

@@ -3,8 +3,18 @@ import PlusIco from "@/app/components/ui/Plus"
 import Image from "next/image"
 import Link from "next/link"
 import styles from "./Product.module.scss"
+import { useAppDispatch } from "@/app/hooks/useAppDispatch"
+import { useAuth } from "@/app/hooks/useAuth"
+import { useCreateFavoriteMutation } from "@/app/redux/rtk-query/favorite.api"
+import { IProduct } from "@/app/types/product.interface"
 //
 const Product = ({ product }: any) => {
+  const dispatch = useAppDispatch()
+  const { user } = useAuth()
+  const [createFavorite] = useCreateFavoriteMutation()
+  const saveToFavorite = (product: IProduct) => {
+    createFavorite({ productId: product.id })
+  }
   return (
     <div className={styles.product}>
       <div className={styles.product__content}>
@@ -29,7 +39,13 @@ const Product = ({ product }: any) => {
             </p>
           </div>
           <div className={styles.product__content__buttons__items}>
-            <button className={styles.product__content__buttons__items__favorite}>
+            <button
+              onClick={() => {
+                console.log("хз чо")
+                user ? saveToFavorite(product) : dispatch(toggleFavorite(product))
+              }}
+              className={styles.product__content__buttons__items__favorite}
+            >
               <FavouriteIco />
             </button>
             <button className={styles.product__content__buttons__items__add}>

@@ -7,16 +7,30 @@ import UserIco from "@/app/components/ui/User"
 import { useAuth } from "@/app/hooks/useAuth"
 import Image from "next/image"
 import Link from "next/link"
-import country from "../../../assets/country.png"
+import country from "../../../assets/kz.png"
 import logo from "../../../assets/logo.png"
 import useravatar from "../../../assets/user.png"
 import Cart from "../../ui/components/Cart/Cart"
 import styles from "./Header.module.scss"
+import { useAppSelector } from "@/app/hooks/useAppSelector"
+import { useGetFavoriteByIdQuery } from "@/app/redux/rtk-query/favorite.api"
+import classNames from "classnames"
+import dynamic from "next/dynamic"
+import { useState } from "react"
+
+const CityModal = dynamic(() => import("../../ui/components/city-modal/CityModal"), { ssr: false })
+
 const Header = ({ setIsShow, isShow, outside, setIsShowModal, isShowModal }: any) => {
   const { user } = useAuth()
+  const { favorite: favoriteState } = useAppSelector((state) => state.favorite)
+  const { data: favoriteFetch, isLoading: favoriteLoading } = useGetFavoriteByIdQuery("")
+  const [isShowCityModal, setIsShowCityModal] = useState(false)
 
   return (
     <header className={styles.header}>
+      {isShowCityModal ? <div className={styles.header__overlay}></div> : ""}
+      {isShowCityModal ? <CityModal setIsShowCityModal={setIsShowCityModal} /> : ""}
+
       <div className={styles.header__container}>
         <div className={styles.header__content}>
           {/*logo*/}
@@ -30,8 +44,22 @@ const Header = ({ setIsShow, isShow, outside, setIsShowModal, isShowModal }: any
           </div>
           {/*menu*/}
           <div className={styles.header__content__menu}>
-            <Image src={country} alt='country' />
-            <p className={styles.header__content__menu__country}>Киев</p>
+            <Image width={20} height={16} src={country} alt='country' />
+            <button
+              onClick={() => setIsShowCityModal(true)}
+              className={styles.header__content__menu__country}
+            >
+              {typeof window !== "undefined" ? (
+                localStorage.getItem("cityName") ? (
+                  <p>{localStorage.getItem("cityName")}</p>
+                ) : (
+                  <p>Выберите город</p>
+                )
+              ) : (
+                ""
+              )}
+            </button>
+            <span>|</span>
             <p className={styles.header__content__menu__value}>RU</p>
           </div>
           {/*navigation*/}
@@ -54,7 +82,7 @@ const Header = ({ setIsShow, isShow, outside, setIsShowModal, isShowModal }: any
           {/*phone*/}
           <div className={styles.header__content__phone}>
             <PhoneIco />
-            <p className={styles.header__content__phone__number}>+38 097 699 34 38</p>
+            <p className={styles.header__content__phone__number}>+7 778 425 99 76</p>
           </div>
           {/*buttons*/}
           <div className={styles.header__content__buttons}>
@@ -62,11 +90,34 @@ const Header = ({ setIsShow, isShow, outside, setIsShowModal, isShowModal }: any
               <button className={styles.header__content__buttons__list__notice}>
                 <NoticeIco />
               </button>
-              <button className={styles.header__content__buttons__list__favourite}>
+              <Link
+                href={"/profile/favorite"}
+                className={styles.header__content__buttons__list__favourite}
+              >
                 <FavouriteIco />
-              </button>
+                {user ? (
+                  favoriteLoading ? (
+                    ""
+                  ) : favoriteFetch?.length == 0 ? (
+                    ""
+                  ) : (
+                    <div className={styles.header__content__buttons__list__favourite__span}>
+                      <span>{favoriteFetch?.length}</span>
+                    </div>
+                  )
+                ) : favoriteState?.length == 0 ? (
+                  ""
+                ) : (
+                  <div className={styles.header__content__buttons__list__favourite__span}>
+                    <span>{favoriteState?.length}</span>
+                  </div>
+                )}
+              </Link>
               {user ? (
-                <Link href={"/profile"} className={styles.header__content__buttons__list__profile}>
+                <Link
+                  href={"/profile/address"}
+                  className={styles.header__content__buttons__list__profile}
+                >
                   <Image src={useravatar} alt='user' width={36} height={36} />
                 </Link>
               ) : (

@@ -5,8 +5,24 @@ import styles from "./Product.module.scss"
 import Link from "next/link"
 import { useAppDispatch } from "@/app/hooks/useAppDispatch"
 import { toggleFavorite } from "@/app/redux/favorite/favorite.slice"
-const Product = ({ product }: any) => {
+import { useAuth } from "@/app/hooks/useAuth"
+import { IProduct } from "@/app/types/product.interface"
+import { useCreateAddressMutation } from "@/app/redux/rtk-query/address.api"
+import { useCreateFavoriteMutation } from "@/app/redux/rtk-query/favorite.api"
+import { useState } from "react"
+import classNames from "classnames"
+import favorite from "@/pages/profile/favorite"
+const Product = ({ product, favoriteCheck, favoriteLoading }: any) => {
   const dispatch = useAppDispatch()
+  const { user } = useAuth()
+
+  // const isFavoriteCheck =
+  const [createFavorite] = useCreateFavoriteMutation()
+  const [isFavorite, setIsFavorite] = useState(favoriteCheck)
+  const saveToFavorite = (product: IProduct) => {
+    createFavorite({ productId: product.id }).unwrap()
+  }
+
   return (
     <div className={styles.product}>
       <Image
@@ -29,11 +45,21 @@ const Product = ({ product }: any) => {
           <button
             onClick={() => {
               console.log("хз чо")
-              dispatch(toggleFavorite(product))
+              user ? saveToFavorite(product) : dispatch(toggleFavorite(product))
+              setIsFavorite(!favoriteCheck)
             }}
-            className={styles.product__footer__buttons__favourite}
+            className={classNames(
+              isFavorite
+                ? [styles.product__footer__buttons__favouriteaccept]
+                : [styles.product__footer__buttons__favourite]
+            )}
+            // className={styles.product__footer__buttons__favourite}
           >
-            <Favourite />
+            {isFavorite ? (
+              <Favourite fill={"#ffffff"} color={"#ffffff"} />
+            ) : (
+              <Favourite fill={"#FF6633"} color={"evenodd"} />
+            )}
           </button>
           <button className={styles.product__footer__buttons__plus}>
             <PlusIco />

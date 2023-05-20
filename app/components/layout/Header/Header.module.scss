@@ -6,6 +6,16 @@
   position: relative;
   width: 100%;
   z-index: 66;
+  &__overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 3;
+    opacity: 0.6;
+    background: #000;
+  }
   &__burger {
     display: none;
     margin-right: 20px;
@@ -63,6 +73,9 @@
       align-items: center;
 
       &__country {
+        cursor: pointer;
+        background: none;
+        border: none;
         font-style: normal;
         font-weight: 500;
         font-size: 16px;
@@ -134,6 +147,9 @@
         }
 
         &__favourite {
+          display: flex;
+          justify-content: center;
+          align-items: center;
           margin-right: 12px;
           cursor: pointer;
           border: 1px solid #d2d2d7;
@@ -141,7 +157,28 @@
           width: 56px;
           height: 56px;
           background: none;
+          position: relative;
+          &__span {
+            position: absolute;
+            width: 28px;
+            height: 28px;
+            background: #ff6633;
+            border: 1px solid #ffffff;
+            border-radius: 500px;
+            top: -10px;
+            right: -10px;
+            span {
+              font-style: normal;
+              font-weight: 500;
+              font-size: 16px;
+              line-height: 24px;
+              color: #ffffff;
+              display: block;
+              text-align: center;
+            }
+          }
         }
+
         &__profile {
           cursor: pointer;
           border: 1px solid #d2d2d7;

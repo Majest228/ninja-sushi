@@ -2,7 +2,7 @@ import Navigation from "@/app/components/Navigation/Navigation"
 import Products from "@/app/components/screens/home/products/Products"
 import CircleIco from "@/app/components/ui/Circle"
 import Image from "next/image"
-import Link from 'next/link'
+import Link from "next/link"
 import app from "../../../assets/appstore.png"
 import banner from "../../../assets/banner1.jpg"
 import gp from "../../../assets/gp.png"
@@ -10,28 +10,77 @@ import map from "../../../assets/map.jpg"
 import mobile from "../../../assets/mobile.png"
 import sushiBanner from "../../../assets/sushi.png"
 import styles from "./HomePage.module.scss"
+import { useEffect, useState } from "react"
+
+const sliders = [
+  {
+    id: 0,
+    title: "Ninja Sushi в Астане! Пока только на левом берегу",
+    desciption: "Доставку делаем с 10:00 до 19:30",
+  },
+  {
+    id: 1,
+    title: "Ninja Sushi в Алматы! Пока только на левом берегу",
+    desciption: "Доставку делаем с 10:00 до 19:30",
+  },
+  {
+    id: 2,
+    title: "Ninja Sushi в Караганда! Пока только на левом берегу",
+    desciption: "Доставку делаем с 10:00 до 19:30",
+  },
+  {
+    id: 3,
+    title: "Ninja Sushi в Шымкенте! Пока только на левом берегу",
+    desciption: "Доставку делаем с 10:00 до 19:30",
+  },
+]
 
 const HomePage = ({ sushies, rolls, sets }: any) => {
+  const [sliderId, setSliderId] = useState(0)
+
+  // const updateSlider = () => {
+  // const timer = setInterval(() => {
+  //   setSliderId((prevCount) => prevCount + 1)
+  // }, 5000)
+
+  //   if (sliderId == 3) setSliderId(0)
+  // }
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setSliderId((prevCount) => (prevCount + 1) % sliders.length)
+    }, 10000)
+    return () => clearTimeout(timer)
+  }, [])
+
   return (
     <div className={styles.home}>
       <Navigation />
       <div className={styles.home__container}>
-        <div
-          className={styles.home__slider}
-          style={{
-            backgroundImage: `url(${banner.src})`,
-            width: "100%",
-            height: "100%",
-          }}
-        >
-          <div className={styles.home__slider__content}>
-            <h3>Ninja Sushi в Киеве! Пока только на левом берегу</h3>
-            <p>Доставку делаем с 10:00 до 19:30</p>
-            <Link className={styles.home__slider__content__link} href={'/news'}>Перейти к новости</Link>
+        <div className={styles.home__slide}>
+          <div
+            className={styles.home__slider}
+            style={{
+              backgroundImage: `url(${banner.src})`,
+              width: "100%",
+              height: "100%",
+            }}
+          >
+            <div key={sliders[sliderId].desciption} className={styles.home__slider__content}>
+              <h3>{sliders[sliderId].title}</h3>
+              <p>{sliders[sliderId].desciption}</p>
+              <Link className={styles.home__slider__content__link} href={"/news"}>
+                Перейти к новости
+              </Link>
+            </div>
           </div>
           <div className={styles.home__slider__controller}>
             {[...new Array(4).keys()].map((i) => (
-              <button key={i} className={styles.home__slider__controller__button}>
+              <button
+                onClick={() => setSliderId(i)}
+                key={i}
+                className={styles.home__slider__controller__button}
+              >
                 <CircleIco />
               </button>
             ))}
@@ -42,16 +91,12 @@ const HomePage = ({ sushies, rolls, sets }: any) => {
         <Products type={"homepage"} data={sets} title='Сеты' />
         <div className={styles.home__offer}>
           <div className={styles.home__offer__content}>
-            <h3 className={styles.home__offer__content__title}>
-              Филадельфия с лососем
-            </h3>
+            <h3 className={styles.home__offer__content__title}>Филадельфия с лососем</h3>
             <p className={styles.home__offer__content__desc}>
               Сир вершковий, шиітаке теріякі, краб-крем, лосось
             </p>
             <div className={styles.home__offer__content__buttons}>
-              <button className={styles.home__offer__content__buttons__basket}>
-                В корзину
-              </button>
+              <button className={styles.home__offer__content__buttons__basket}>В корзину</button>
               <p className={styles.home__offer__content__buttons__price}>
                 190 <span>грн</span>
               </p>
@@ -76,8 +121,7 @@ const HomePage = ({ sushies, rolls, sets }: any) => {
 
         <div className={styles.home__maps}>
           <h3 className={styles.home__maps__title}>
-            Каждая кухня работает со своей зоной доставки, чтобы привезти еду
-            максимально быстро
+            Каждая кухня работает со своей зоной доставки, чтобы привезти еду максимально быстро
           </h3>
           <div className={styles.home__maps__type}>
             <div className={styles.home__maps__type__item}>
@@ -109,8 +153,7 @@ const HomePage = ({ sushies, rolls, sets }: any) => {
               Ниндзя - это семья. Скачивайте наше приложение
             </h3>
             <p className={styles.home__download__content__desc}>
-              Станьте ниндзя! Будьте в курсе всех новинок и никогда не оставаться
-              голодным.
+              Станьте ниндзя! Будьте в курсе всех новинок и никогда не оставаться голодным.
             </p>
             <div className={styles.home__download__buttons}>
               <a href=''>
