@@ -4,7 +4,12 @@ import CircleIco from "@/app/components/ui/Circle"
 import Image from "next/image"
 import Link from "next/link"
 import app from "../../../assets/appstore.png"
-import banner from "../../../assets/banner1.jpg"
+import banner1 from "../../../assets/banner1.webp"
+import banner2 from "../../../assets/banner2.webp"
+import banner3 from "../../../assets/banner3.webp"
+import banner4 from "../../../assets/banner4.webp"
+import banner5 from "../../../assets/banner5.webp"
+import banner6 from "../../../assets/banner6.webp"
 import gp from "../../../assets/gp.png"
 import map from "../../../assets/map.jpg"
 import mobile from "../../../assets/mobile.png"
@@ -15,73 +20,126 @@ import { useEffect, useState } from "react"
 const sliders = [
   {
     id: 0,
-    title: "Ninja Sushi в Астане! Пока только на левом берегу",
-    desciption: "Доставку делаем с 10:00 до 19:30",
+    title: "Ninja на турнире по Valorant в Астане!",
+    desciption: "Ниндзя-фанаты киберспорта",
+    banner: banner1,
   },
   {
     id: 1,
-    title: "Ninja Sushi в Алматы! Пока только на левом берегу",
-    desciption: "Доставку делаем с 10:00 до 19:30",
+    title: "Подарки от ниндзя в WAKE UP SHOW от DJ FM",
+    desciption: "С понедельника по пятницу",
+    banner: banner2,
   },
   {
     id: 2,
-    title: "Ninja Sushi в Караганда! Пока только на левом берегу",
-    desciption: "Доставку делаем с 10:00 до 19:30",
+    title: "Подарки от ниндзя суши и плохого парня",
+    desciption: "Подарок можно забрать до 30 мая",
+    banner: banner3,
   },
   {
     id: 3,
-    title: "Ninja Sushi в Шымкенте! Пока только на левом берегу",
-    desciption: "Доставку делаем с 10:00 до 19:30",
+    title: "Коллекция Ninja Sushi Spring Collection",
+    desciption: "В тренде зеленый, розовый и оранжевый",
+    banner: banner4,
+  },
+  {
+    id: 4,
+    title: "Что смотрели ниндзя в 2022?",
+    desciption: "Определяйтесь с выбором",
+    banner: banner5,
+  },
+  {
+    id: 5,
+    title: "Лимитированный дроп патриотической футболки от Ninja",
+    desciption: "Придбати можна за 22000 тг",
+    banner: banner6,
+  },
+]
+
+const dots = [
+  {
+    id: 0,
+    offset: 0,
+  },
+  {
+    id: 1,
+    offset: -1576,
+  },
+  {
+    id: 2,
+    offset: -3152,
+  },
+  {
+    id: 3,
+    offset: -4728,
+  },
+  {
+    id: 4,
+    offset: -6304,
+  },
+  {
+    id: 5,
+    offset: -7880,
   },
 ]
 
 const HomePage = ({ sushies, rolls, sets }: any) => {
   const [sliderId, setSliderId] = useState(0)
-
-  // const updateSlider = () => {
-  // const timer = setInterval(() => {
-  //   setSliderId((prevCount) => prevCount + 1)
-  // }, 5000)
-
-  //   if (sliderId == 3) setSliderId(0)
-  // }
-
+  const [offset, setOffset] = useState(0)
   useEffect(() => {
     const timer = setInterval(() => {
-      setSliderId((prevCount) => (prevCount + 1) % sliders.length)
-    }, 10000)
+      const maxOffset = dots[dots.length - 1]
+      if (maxOffset.offset >= offset) {
+        setOffset(0)
+        setSliderId(0)
+      } else {
+        setOffset((prev) => prev - 1576)
+        const currentIndex = dots.find((dot) => dot.offset == offset)
+        setSliderId(currentIndex?.id + 1)
+      }
+    }, 1000)
     return () => clearTimeout(timer)
-  }, [])
-
+  }, [offset])
+  let test = dots[dots.length - 1]
+  useEffect(() => {
+    console.log("offset", offset, "maxOffset", test.offset, "id", sliderId)
+  }, [offset, test, sliderId])
   return (
     <div className={styles.home}>
       <Navigation />
       <div className={styles.home__container}>
         <div className={styles.home__slide}>
-          <div
-            className={styles.home__slider}
-            style={{
-              backgroundImage: `url(${banner.src})`,
-              width: "100%",
-              height: "100%",
-            }}
-          >
-            <div key={sliders[sliderId].desciption} className={styles.home__slider__content}>
-              <h3>{sliders[sliderId].title}</h3>
-              <p>{sliders[sliderId].desciption}</p>
-              <Link className={styles.home__slider__content__link} href={"/news"}>
-                Перейти к новости
-              </Link>
+          {sliders.map((slider) => (
+            <div
+              className={styles.home__slider}
+              style={{
+                backgroundImage: `url(${slider.banner.src})`,
+                width: "100%",
+                height: "100%",
+                backgroundSize: "cover",
+                transform: `translateX(${offset}px)`,
+              }}
+            >
+              <div key={slider.desciption} className={styles.home__slider__content}>
+                <h3>{slider.title}</h3>
+                <p>{slider.desciption}</p>
+                <Link className={styles.home__slider__content__link} href={"/news"}>
+                  Перейти к новости
+                </Link>
+              </div>
             </div>
-          </div>
+          ))}
           <div className={styles.home__slider__controller}>
-            {[...new Array(4).keys()].map((i) => (
+            {dots.map((item) => (
               <button
-                onClick={() => setSliderId(i)}
-                key={i}
+                onClick={() => {
+                  setOffset(item.offset)
+                  setSliderId(item.id)
+                }}
+                key={item.id}
                 className={styles.home__slider__controller__button}
               >
-                <CircleIco />
+                <CircleIco fill={sliderId == item.id ? "#FF6633" : "#D2D2D7"} />
               </button>
             ))}
           </div>

@@ -70,12 +70,28 @@ const Profile = ({ children, active }: IProfile) => {
               </Link>
               <Link
                 href='/profile/favorite'
-                className={styles.profile__content__left__list__button}
+                className={classNames(
+                  active == "favorite"
+                    ? [styles.profile__content__left__list__active]
+                    : [styles.profile__content__left__list__button]
+                )}
               >
-                <div className={styles.profile__content__left__list__button__img}>
+                <div
+                  className={classNames(
+                    active == "favorite"
+                      ? [styles.profile__content__left__list__active__img]
+                      : [styles.profile__content__left__list__button__img]
+                  )}
+                >
                   <Image src={favorite} alt={`${favorite}`} />
                 </div>
-                <p className={styles.profile__content__left__list__button__text}>
+                <p
+                  className={classNames(
+                    active == "favorite"
+                      ? [styles.profile__content__left__list__active__text]
+                      : [styles.profile__content__left__list__button__text]
+                  )}
+                >
                   Избранные товары
                 </p>
               </Link>

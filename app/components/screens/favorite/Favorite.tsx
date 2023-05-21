@@ -6,6 +6,7 @@ import { useAppSelector } from "@/app/hooks/useAppSelector"
 import { useAuth } from "@/app/hooks/useAuth"
 import { useGetFavoriteByIdQuery } from "@/app/redux/rtk-query/favorite.api"
 import dynamic from "next/dynamic"
+import { useState } from "react"
 
 const Product = dynamic(() => import("../home/products/product/Product"), { ssr: false })
 const Favorite = () => {
@@ -13,8 +14,9 @@ const Favorite = () => {
   const { data: favoriteFetch, isLoading: favoriteLoading } = useGetFavoriteByIdQuery("")
   console.log("Store", favoriteState, "Fetch", favoriteFetch)
   const { user } = useAuth()
+  const [active, setActive] = useState("favorite")
   return (
-    <Profile>
+    <Profile active={active}>
       <div className={styles.profile__favorite}>
         <h3 className={styles.profile__favorite__tittle}>Избранные товары</h3>
       </div>
