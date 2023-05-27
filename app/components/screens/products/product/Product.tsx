@@ -35,7 +35,7 @@ const Product = ({ product }: any) => {
           <div className={styles.product__content__price}>
             <p>
               {product.price}
-              <span>грн</span>
+              <span>тг</span>
             </p>
           </div>
           <div className={styles.product__content__buttons__items}>

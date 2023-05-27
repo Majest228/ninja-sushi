@@ -19,7 +19,7 @@ export interface IProducts {
   sushies: any
 }
 
-const Products = ({ title, type, data }: IProducts) => {
+const Products = ({ title, type, data, count = 100000 }: IProducts) => {
   const categories = ["Все", "Классические", "Маки", "Драконы", "Запеченные", "Феликсы", "Сладкие"]
   const { data: favoriteFetch, isLoading: favoriteLoading } = useGetFavoriteByIdQuery("")
   const types = [

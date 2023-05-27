@@ -39,7 +39,7 @@ const Product = ({ product, favoriteCheck, favoriteLoading }: any) => {
       <p className={styles.product__desc}>{product.description}</p>
       <div className={styles.product__footer}>
         <p className={styles.product__footer__price}>
-          {product.price} <span>грн</span>
+          {product.price} <span>тг</span>
         </p>
         <div className={styles.product__footer__buttons}>
           <button

@@ -15,7 +15,7 @@ import map from "../../../assets/map.jpg"
 import mobile from "../../../assets/mobile.png"
 import sushiBanner from "../../../assets/sushi.png"
 import styles from "./HomePage.module.scss"
-import { useEffect, useState } from "react"
+import { useEffect, useState, useRef, useCallback, useLayoutEffect } from "react"
 
 const sliders = [
   {
@@ -56,59 +56,62 @@ const sliders = [
   },
 ]
 
-const dots = [
-  {
-    id: 0,
-    offset: 0,
-  },
-  {
-    id: 1,
-    offset: -1576,
-  },
-  {
-    id: 2,
-    offset: -3152,
-  },
-  {
-    id: 3,
-    offset: -4728,
-  },
-  {
-    id: 4,
-    offset: -6304,
-  },
-  {
-    id: 5,
-    offset: -7880,
-  },
-]
-
 const HomePage = ({ sushies, rolls, sets }: any) => {
   const [sliderId, setSliderId] = useState(0)
-  const [offset, setOffset] = useState(0)
+  const offset = useRef(0)
+  const [dots, setDots] = useState([-0, -1576, -3152, -4728, -6304, -7880])
+  const slide = useRef()
+  const sliderWidth = useRef(window.innerWidth > 1576 ? 1576 : window.innerWidth)
+  const [isResize, setIsResize] = useState(false)
+
+  let newDots = []
+  const checkResolution = async () => {
+    sliderWidth.current = slide.current.offsetWidth
+    console.log("currentResizeCheck", sliderWidth.current)
+    for (let i = 0; i < sliders.length; i++) {
+      newDots.push(-Math.abs(sliderWidth.current * i))
+      setDots([...newDots])
+    }
+  }
+  const handleWindowResize = () => {
+    sliderWidth.current = slide.current.offsetWidth
+    console.log("currentResizeHande", sliderWidth)
+    setIsResize(true)
+    for (let i = 0; i < sliders.length; i++) {
+      newDots.push(-Math.abs(sliderWidth.current * i))
+      setDots([...newDots])
+    }
+    // offset.current = -Math.abs(sliderWidth.current)
+    offset.current = newDots[sliderId]
+  }
+
   useEffect(() => {
-    const timer = setInterval(() => {
-      const maxOffset = dots[dots.length - 1]
-      if (maxOffset.offset >= offset) {
-        setOffset(0)
-        setSliderId(0)
-      } else {
-        setOffset((prev) => prev - 1576)
-        const currentIndex = dots.find((dot) => dot.offset == offset)
-        setSliderId(currentIndex?.id + 1)
-      }
-    }, 1000)
-    return () => clearTimeout(timer)
-  }, [offset])
-  let test = dots[dots.length - 1]
+    window.addEventListener("resize", handleWindowResize)
+    window.addEventListener("load", checkResolution)
+    return () => {
+      window.removeEventListener("resize", handleWindowResize)
+      window.removeEventListener("load", checkResolution)
+    }
+  }, [checkResolution, handleWindowResize])
+
   useEffect(() => {
-    console.log("offset", offset, "maxOffset", test.offset, "id", sliderId)
-  }, [offset, test, sliderId])
+    console.log(
+      "width",
+      sliderWidth.current,
+      "dots",
+      dots,
+      "isResize",
+      isResize,
+      "offset",
+      offset.current
+    )
+  }, [sliderWidth.current, dots, isResize])
+
   return (
     <div className={styles.home}>
       <Navigation />
       <div className={styles.home__container}>
-        <div className={styles.home__slide}>
+        <div className={styles.home__slide} ref={slide}>
           {sliders.map((slider) => (
             <div
               className={styles.home__slider}
@@ -117,7 +120,7 @@ const HomePage = ({ sushies, rolls, sets }: any) => {
                 width: "100%",
                 height: "100%",
                 backgroundSize: "cover",
-                transform: `translateX(${offset}px)`,
+                transform: `translateX(${offset.current}px)`,
               }}
             >
               <div key={slider.desciption} className={styles.home__slider__content}>
@@ -130,16 +133,16 @@ const HomePage = ({ sushies, rolls, sets }: any) => {
             </div>
           ))}
           <div className={styles.home__slider__controller}>
-            {dots.map((item) => (
+            {dots.map((item, index) => (
               <button
                 onClick={() => {
-                  setOffset(item.offset)
-                  setSliderId(item.id)
+                  offset.current = item
+                  setSliderId(index)
                 }}
-                key={item.id}
+                // key={item.id}
                 className={styles.home__slider__controller__button}
               >
-                <CircleIco fill={sliderId == item.id ? "#FF6633" : "#D2D2D7"} />
+                <CircleIco fill={sliderId == index ? "#FF6633" : "#D2D2D7"} />
               </button>
             ))}
           </div>

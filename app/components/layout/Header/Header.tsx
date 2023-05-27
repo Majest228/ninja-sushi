@@ -16,7 +16,7 @@ import { useAppSelector } from "@/app/hooks/useAppSelector"
 import { useGetFavoriteByIdQuery } from "@/app/redux/rtk-query/favorite.api"
 import classNames from "classnames"
 import dynamic from "next/dynamic"
-import { useState } from "react"
+import { useState, useRef } from "react"
 
 const CityModal = dynamic(() => import("../../ui/components/city-modal/CityModal"), { ssr: false })
 
@@ -25,7 +25,14 @@ const Header = ({ setIsShow, isShow, outside, setIsShowModal, isShowModal }: any
   const { favorite: favoriteState } = useAppSelector((state) => state.favorite)
   const { data: favoriteFetch, isLoading: favoriteLoading } = useGetFavoriteByIdQuery("")
   const [isShowCityModal, setIsShowCityModal] = useState(false)
+  const [copyText, setCopyText] = useState("")
+  const textFromCopy = useRef()
 
+  const copyToClick = (e) => {
+    setCopyText(textFromCopy.current.innerText)
+  }
+
+  console.log("copy - ", copyText)
   return (
     <header className={styles.header}>
       {isShowCityModal ? <div className={styles.header__overlay}></div> : ""}
@@ -82,7 +89,13 @@ const Header = ({ setIsShow, isShow, outside, setIsShowModal, isShowModal }: any
           {/*phone*/}
           <div className={styles.header__content__phone}>
             <PhoneIco />
-            <p className={styles.header__content__phone__number}>+7 778 425 99 76</p>
+            <p
+              onClick={() => copyToClick()}
+              ref={textFromCopy}
+              className={styles.header__content__phone__number}
+            >
+              +7 778 425 99 76
+            </p>
           </div>
           {/*buttons*/}
           <div className={styles.header__content__buttons}>
