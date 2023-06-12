@@ -4,6 +4,7 @@ import { addressApi } from "./rtk-query/address.api"
 import { userApi } from "./rtk-query/profile.api"
 import { favoriteApi } from "./rtk-query/favorite.api"
 import { cityApi } from "./rtk-query/city.api"
+import { cartApi } from "./rtk-query/cart.api"
 
 export function makeStore() {
   return configureStore({
@@ -13,7 +14,8 @@ export function makeStore() {
         addressApi.middleware,
         userApi.middleware,
         favoriteApi.middleware,
-        cityApi.middleware
+        cityApi.middleware,
+        cartApi.middleware
       ),
     devTools: true,
   })

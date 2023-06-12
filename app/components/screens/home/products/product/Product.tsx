@@ -12,15 +12,29 @@ import { useCreateFavoriteMutation } from "@/app/redux/rtk-query/favorite.api"
 import { useState } from "react"
 import classNames from "classnames"
 import favorite from "@/pages/profile/favorite"
+import { toast } from "react-toastify"
 const Product = ({ product, favoriteCheck, favoriteLoading }: any) => {
   const dispatch = useAppDispatch()
   const { user } = useAuth()
 
-  // const isFavoriteCheck =
   const [createFavorite] = useCreateFavoriteMutation()
   const [isFavorite, setIsFavorite] = useState(favoriteCheck)
   const saveToFavorite = (product: IProduct) => {
     createFavorite({ productId: product.id }).unwrap()
+    isFavorite
+      ? toast.success(`Вы удалили продукт - ${product.name} из избранные товары`, {
+          position: toast.POSITION.BOTTOM_RIGHT,
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: 1,
+          theme: "light",
+        })
+      : toast.success(`Вы добавили продукт - ${product.name} в избранные товары`, {
+          position: toast.POSITION.BOTTOM_RIGHT,
+        })
   }
 
   return (
@@ -44,7 +58,6 @@ const Product = ({ product, favoriteCheck, favoriteLoading }: any) => {
         <div className={styles.product__footer__buttons}>
           <button
             onClick={() => {
-              console.log("хз чо")
               user ? saveToFavorite(product) : dispatch(toggleFavorite(product))
               setIsFavorite(!favoriteCheck)
             }}
@@ -53,7 +66,6 @@ const Product = ({ product, favoriteCheck, favoriteLoading }: any) => {
                 ? [styles.product__footer__buttons__favouriteaccept]
                 : [styles.product__footer__buttons__favourite]
             )}
-            // className={styles.product__footer__buttons__favourite}
           >
             {isFavorite ? (
               <Favourite fill={"#ffffff"} color={"#ffffff"} />

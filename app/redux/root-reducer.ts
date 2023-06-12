@@ -5,6 +5,7 @@ import { userApi } from "./rtk-query/profile.api"
 import { favoriteReducer } from "./favorite/favorite.slice"
 import { favoriteApi } from "./rtk-query/favorite.api"
 import { cityApi } from "./rtk-query/city.api"
+import { cartApi } from "./rtk-query/cart.api"
 
 export const rootReducer = combineReducers({
   auth: authReducer,
@@ -13,4 +14,5 @@ export const rootReducer = combineReducers({
   [userApi.reducerPath]: userApi.reducer,
   [favoriteApi.reducerPath]: favoriteApi.reducer,
   [cityApi.reducerPath]: cityApi.reducer,
+  [cartApi.reducerPath]: cartApi.reducer,
 })

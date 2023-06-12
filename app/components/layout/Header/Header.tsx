@@ -17,6 +17,7 @@ import { useGetFavoriteByIdQuery } from "@/app/redux/rtk-query/favorite.api"
 import classNames from "classnames"
 import dynamic from "next/dynamic"
 import { useState, useRef } from "react"
+import { toast } from "react-toastify"
 
 const CityModal = dynamic(() => import("../../ui/components/city-modal/CityModal"), { ssr: false })
 
@@ -29,7 +30,12 @@ const Header = ({ setIsShow, isShow, outside, setIsShowModal, isShowModal }: any
   const textFromCopy = useRef()
 
   const copyToClick = (e) => {
-    setCopyText(textFromCopy.current.innerText)
+    try {
+      setCopyText(textFromCopy.current.innerText)
+      toast.success(`Вы успешно копировали номер телефона - ${copyText}`, {
+        position: toast.POSITION.BOTTOM_RIGHT,
+      })
+    } catch (error) {}
   }
 
   console.log("copy - ", copyText)
@@ -152,7 +158,12 @@ const Header = ({ setIsShow, isShow, outside, setIsShowModal, isShowModal }: any
             </ul>
             {isShow ? (
               <>
-                <Cart outside={outside} setIsShow={setIsShow} />
+                <Cart
+                  setIsShowModal={setIsShowModal}
+                  isShowModal={isShowModal}
+                  outside={outside}
+                  setIsShow={setIsShow}
+                />
               </>
             ) : (
               ""

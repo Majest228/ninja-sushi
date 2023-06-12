@@ -16,6 +16,7 @@ import mobile from "../../../assets/mobile.png"
 import sushiBanner from "../../../assets/sushi.png"
 import styles from "./HomePage.module.scss"
 import { useEffect, useState, useRef, useCallback, useLayoutEffect } from "react"
+import Slider from "./slider/Slider"
 
 const sliders = [
   {
@@ -57,61 +58,62 @@ const sliders = [
 ]
 
 const HomePage = ({ sushies, rolls, sets }: any) => {
-  const [sliderId, setSliderId] = useState(0)
-  const offset = useRef(0)
-  const [dots, setDots] = useState([-0, -1576, -3152, -4728, -6304, -7880])
-  const slide = useRef()
-  const sliderWidth = useRef(window.innerWidth > 1576 ? 1576 : window.innerWidth)
-  const [isResize, setIsResize] = useState(false)
+  // const [sliderId, setSliderId] = useState(0)
+  // const offset = useRef(0)
+  // const [dots, setDots] = useState([-0, -1576, -3152, -4728, -6304, -7880])
+  // const slide = useRef()
+  // const sliderWidth = useRef(window.innerWidth > 1576 ? 1576 : window.innerWidth)
+  // const [isResize, setIsResize] = useState(false)
 
-  let newDots = []
-  const checkResolution = async () => {
-    sliderWidth.current = slide.current.offsetWidth
-    console.log("currentResizeCheck", sliderWidth.current)
-    for (let i = 0; i < sliders.length; i++) {
-      newDots.push(-Math.abs(sliderWidth.current * i))
-      setDots([...newDots])
-    }
-  }
-  const handleWindowResize = () => {
-    sliderWidth.current = slide.current.offsetWidth
-    console.log("currentResizeHande", sliderWidth)
-    setIsResize(true)
-    for (let i = 0; i < sliders.length; i++) {
-      newDots.push(-Math.abs(sliderWidth.current * i))
-      setDots([...newDots])
-    }
-    // offset.current = -Math.abs(sliderWidth.current)
-    offset.current = newDots[sliderId]
-  }
+  // let newDots = []
+  // const checkResolution = async () => {
+  //   sliderWidth.current = slide.current.offsetWidth
+  //   console.log("currentResizeCheck", sliderWidth.current)
+  //   for (let i = 0; i < sliders.length; i++) {
+  //     newDots.push(-Math.abs(sliderWidth.current * i))
+  //     setDots([...newDots])
+  //   }
+  // }
+  // const handleWindowResize = () => {
+  //   sliderWidth.current = slide.current.offsetWidth
+  //   console.log("currentResizeHande", sliderWidth)
+  //   setIsResize(true)
+  //   for (let i = 0; i < sliders.length; i++) {
+  //     newDots.push(-Math.abs(sliderWidth.current * i))
+  //     setDots([...newDots])
+  //   }
+  //   // offset.current = -Math.abs(sliderWidth.current)
+  //   offset.current = newDots[sliderId]
+  // }
 
-  useEffect(() => {
-    window.addEventListener("resize", handleWindowResize)
-    window.addEventListener("load", checkResolution)
-    return () => {
-      window.removeEventListener("resize", handleWindowResize)
-      window.removeEventListener("load", checkResolution)
-    }
-  }, [checkResolution, handleWindowResize])
+  // useEffect(() => {
+  //   window.addEventListener("resize", handleWindowResize)
+  //   window.addEventListener("load", checkResolution)
+  //   return () => {
+  //     window.removeEventListener("resize", handleWindowResize)
+  //     window.removeEventListener("load", checkResolution)
+  //   }
+  // }, [checkResolution, handleWindowResize])
 
-  useEffect(() => {
-    console.log(
-      "width",
-      sliderWidth.current,
-      "dots",
-      dots,
-      "isResize",
-      isResize,
-      "offset",
-      offset.current
-    )
-  }, [sliderWidth.current, dots, isResize])
+  // useEffect(() => {
+  //   console.log(
+  //     "width",
+  //     sliderWidth.current,
+  //     "dots",
+  //     dots,
+  //     "isResize",
+  //     isResize,
+  //     "offset",
+  //     offset.current
+  //   )
+  // }, [sliderWidth.current, dots, isResize])
 
   return (
     <div className={styles.home}>
       <Navigation />
       <div className={styles.home__container}>
-        <div className={styles.home__slide} ref={slide}>
+        <Slider />
+        {/* <div className={styles.home__slide} ref={slide}>
           {sliders.map((slider) => (
             <div
               className={styles.home__slider}
@@ -146,7 +148,7 @@ const HomePage = ({ sushies, rolls, sets }: any) => {
               </button>
             ))}
           </div>
-        </div>
+        </div> */}
         <Products type={"homepage"} data={sushies} title='Суши' />
         <Products type={"homepage"} data={rolls} title='Роллы' />
         <Products type={"homepage"} data={sets} title='Сеты' />
