@@ -73,6 +73,7 @@ const Products = ({ title, type, data, count = 100000 }: IProducts) => {
       <div className={styles.products__content}>
         {data?.map((product) => (
           <Product
+            key={product.id}
             product={product}
             favoriteCheck={
               favoriteLoading ? null : favoriteFetch?.some((item) => item.product.id == product.id)

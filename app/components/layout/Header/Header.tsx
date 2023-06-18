@@ -10,7 +10,6 @@ import Link from "next/link"
 import country from "../../../assets/kz.png"
 import logo from "../../../assets/logo.png"
 import useravatar from "../../../assets/user.png"
-import Cart from "../../ui/components/Cart/Cart"
 import styles from "./Header.module.scss"
 import { useAppSelector } from "@/app/hooks/useAppSelector"
 import { useGetFavoriteByIdQuery } from "@/app/redux/rtk-query/favorite.api"
@@ -18,17 +17,20 @@ import classNames from "classnames"
 import dynamic from "next/dynamic"
 import { useState, useRef } from "react"
 import { toast } from "react-toastify"
+import { useAppDispatch } from "@/app/hooks/useAppDispatch"
+import { toggleSwitchModal } from "@/app/redux/cart/cart.slice"
 
 const CityModal = dynamic(() => import("../../ui/components/city-modal/CityModal"), { ssr: false })
-
-const Header = ({ setIsShow, isShow, outside, setIsShowModal, isShowModal }: any) => {
+const Cart = dynamic(() => import("../../ui/components/Cart/Cart"))
+const Header = ({ outside, setIsShowModal, isShowModal }: any) => {
+  const { isShowCart } = useAppSelector((state) => state.cart)
   const { user } = useAuth()
   const { favorite: favoriteState } = useAppSelector((state) => state.favorite)
   const { data: favoriteFetch, isLoading: favoriteLoading } = useGetFavoriteByIdQuery("")
   const [isShowCityModal, setIsShowCityModal] = useState(false)
   const [copyText, setCopyText] = useState("")
   const textFromCopy = useRef()
-
+  const dispatch = useAppDispatch()
   const copyToClick = (e) => {
     try {
       setCopyText(textFromCopy.current.innerText)
@@ -149,21 +151,16 @@ const Header = ({ setIsShow, isShow, outside, setIsShowModal, isShowModal }: any
               )}
 
               <button
-                onClick={() => setIsShow(true)}
+                onClick={() => dispatch(toggleSwitchModal())}
                 className={styles.header__content__buttons__list__basket}
               >
                 <p>Корзина</p>
                 <BasketIco />
               </button>
             </ul>
-            {isShow ? (
+            {isShowCart ? (
               <>
-                <Cart
-                  setIsShowModal={setIsShowModal}
-                  isShowModal={isShowModal}
-                  outside={outside}
-                  setIsShow={setIsShow}
-                />
+                <Cart setIsShowModal={setIsShowModal} isShowModal={isShowModal} outside={outside} />
               </>
             ) : (
               ""

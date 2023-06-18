@@ -13,11 +13,13 @@ import { useState } from "react"
 import classNames from "classnames"
 import favorite from "@/pages/profile/favorite"
 import { toast } from "react-toastify"
+import { useAddToCartMutation } from "@/app/redux/rtk-query/cart.api"
 const Product = ({ product, favoriteCheck, favoriteLoading }: any) => {
   const dispatch = useAppDispatch()
   const { user } = useAuth()
 
   const [createFavorite] = useCreateFavoriteMutation()
+  const [addCartProduct] = useAddToCartMutation()
   const [isFavorite, setIsFavorite] = useState(favoriteCheck)
   const saveToFavorite = (product: IProduct) => {
     createFavorite({ productId: product.id }).unwrap()
@@ -35,6 +37,24 @@ const Product = ({ product, favoriteCheck, favoriteLoading }: any) => {
       : toast.success(`Вы добавили продукт - ${product.name} в избранные товары`, {
           position: toast.POSITION.BOTTOM_RIGHT,
         })
+  }
+
+  const addToCart = (product: IProduct) => {
+    addCartProduct({ productId: product.id }).unwrap()
+    // isFavorite
+    //     ? toast.success(`Вы удалили продукт - ${product.name} из избранные товары`, {
+    //         position: toast.POSITION.BOTTOM_RIGHT,
+    //         autoClose: 3000,
+    //         hideProgressBar: false,
+    //         closeOnClick: true,
+    //         pauseOnHover: true,
+    //         draggable: true,
+    //         progress: 1,
+    //         theme: "light",
+    //     })
+    //     : toast.success(`Вы добавили продукт - ${product.name} в избранные товары`, {
+    //         position: toast.POSITION.BOTTOM_RIGHT,
+    //     })
   }
 
   return (
@@ -73,7 +93,10 @@ const Product = ({ product, favoriteCheck, favoriteLoading }: any) => {
               <Favourite fill={"#FF6633"} color={"evenodd"} />
             )}
           </button>
-          <button className={styles.product__footer__buttons__plus}>
+          <button
+            onClick={() => addToCart(product)}
+            className={styles.product__footer__buttons__plus}
+          >
             <PlusIco />
           </button>
         </div>

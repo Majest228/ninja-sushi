@@ -6,17 +6,22 @@ import dynamic from "next/dynamic"
 import { useEffect, useRef, useState } from "react"
 import AuthModal from "../ui/components/auth-modal/AuthModal"
 import styles from "./Layout.module.scss"
+import { useAppSelector } from "@/app/hooks/useAppSelector"
+import { useAppDispatch } from "@/app/hooks/useAppDispatch"
+import { toggleSwitchModal } from "@/app/redux/cart/cart.slice"
 
 const Header = dynamic(() => import("@/app/components/layout/Header/Header"), {
   ssr: false,
 })
 
 const Layout = ({ children }: ILayout): JSX.Element => {
-  const [isShow, setIsShow] = useState(false)
+  const { isShowCart } = useAppSelector((state) => state.cart)
+  const dispatch = useAppDispatch()
+  // const [isShow, setIsShow] = useState(false)
   const [isShowModal, setIsShowModal] = useState(false)
   const outside = useRef<HTMLElement>(null)
   useOutsideClick(outside, () => {
-    setIsShow(false)
+    dispatch(toggleSwitchModal())
     console.log("click")
   })
 
@@ -34,15 +39,15 @@ const Layout = ({ children }: ILayout): JSX.Element => {
 
   return (
     <div className={styles.wrapper}>
-      {isShow ? <div className={styles.overlay}></div> : ""}
+      {isShowCart ? <div className={styles.overlay}></div> : ""}
       {isShowModal ? <div className={styles.overlay__modal}></div> : ""}
       {isShowModal ? <AuthModal isShowModal={isShowModal} setIsShowModal={setIsShowModal} /> : ""}
       <Header
         outside={outside}
-        isShow={isShow}
+        // isShow={isShow}
         setIsShowModal={setIsShowModal}
         isShowModal={isShowModal}
-        setIsShow={setIsShow}
+        // setIsShow={setIsShow}
       />
       <main className={styles.main}>{children}</main>
       <div className={styles.desc}>
